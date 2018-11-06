@@ -31,8 +31,6 @@ body { background: #0f0f0f; overflow-y: hidden; }
     left: 45%;
     line-height: 1px;
     padding: 15px 5px;
-    position: absolute;
-    font-family: "FontAwesome";
 }
 
 /* preloader css */
@@ -55,7 +53,7 @@ body { background: #0f0f0f; overflow-y: hidden; }
 
 .loader {
     animation: animate 1.5s linear infinite;
-    clip: rect(0, 80px, 80px, 40px); 
+    clip: rect(0, 80px, 80px, 40px);
     height: 80px;
     width: 80px;
     position: absolute;
@@ -64,10 +62,10 @@ body { background: #0f0f0f; overflow-y: hidden; }
     z-index: 999;
 }
 @keyframes animate {
-    0% { 
+    0% {
         transform: rotate(0deg)
     }
-    100% { 
+    100% {
         transform: rotate(220deg)
     }
 }
@@ -75,11 +73,11 @@ body { background: #0f0f0f; overflow-y: hidden; }
     animation: animate2 1.5s ease-in-out infinite;
     clip: rect(0, 80px, 80px, 40px);
     content:'';
-    border-radius: 50%; 
+    border-radius: 50%;
     height: 80px;
     width: 80px;
-    position: absolute; 
-} 
+    position: absolute;
+}
 @keyframes animate2 {
     0% {
         box-shadow: inset #fff 0 0 0 17px;
@@ -161,8 +159,8 @@ header .banner-text hr {
     border-color: rgba(150, 150, 150, .1);
 }
 
-.header-overlay {  
-    background: #161415 url(../images/bg-blur.jpg) no-repeat top center;     
+.header-overlay {
+    background: #161415 url(../images/bg-blur.jpg) no-repeat top center;
     background-size:  cover!important;
     position: absolute;
     top: 0;
@@ -214,7 +212,7 @@ header .banner-text hr {
 .social-container .social li a:hover { color: #11ABB0; }
 
 /* scrolldown link */
-header .scrolldown a {  
+header .scrolldown a {
     position: absolute;
     bottom: 130px;
     left: 50%;
@@ -245,7 +243,7 @@ header .scrolldown a {
 @keyframes updown {
     from {transform: scale(1); bottom: 130px;}
     to {transform: scale(1.2); bottom: 125px;}
-} 
+}
 
 header .scrolldown a:hover { color: #11ABB0; }
 
@@ -307,15 +305,15 @@ ul#nav li a {
     transition: all .2s ease-in-out;
 }
 
-ul#nav li a:active { 
-    background-color: transparent !important; 
+ul#nav li a:active {
+    background-color: transparent !important;
 }
 
-ul#nav li.current a { 
+ul#nav li.current a {
     color: #ed5565;
 }
 
-ul#nav li a:hover { 
+ul#nav li a:hover {
     color: #ed5565;
     border-bottom: 2px solid #fff;
 }
@@ -545,7 +543,7 @@ ul#nav li a:hover {
 /* topic */
 
 #topic {
-  background: url(../images/material-bg.jpg) no-repeat fixed center center / cover;        
+  background: url(../images/material-bg.jpg) no-repeat fixed center center / cover;
   overflow: hidden;
 }
 
