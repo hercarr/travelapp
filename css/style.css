@@ -20,17 +20,7 @@ body { background: #0f0f0f; overflow-y: hidden; }
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all .3s;
--o-transition: all .3s;
-}
-
-.section-title:after {
-    background: none repeat scroll 0 0 #fff;
-    bottom: -15px;
-    color: #333;
-    content: "\f0a7";
-    left: 45%;
-    line-height: 1px;
-    padding: 15px 5px;
+    -o-transition: all .3s;
 }
 
 /* preloader css */
@@ -356,12 +346,6 @@ ul#nav li a:hover {
     font-weight: 700;
     text-transform: uppercase;
     color: #666;
-}
-
-#agenda .section-title:after {
-    background: #fff;
-    color: #666;
-    content: "\f02d";
 }
 
 #agenda .header-col { padding-top: 9px; }
