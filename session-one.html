@@ -66,6 +66,7 @@
     <div class="header-overlay"></div>
   </header>
   <!-- header end -->
+  <!-- part one start -->
   <!-- section start -->
  	<section id="agenda">
     <!-- what's android start -->
@@ -179,7 +180,7 @@
 			<h2><span>Java</span></h2>
     </div>
     <div class="row education">
-    	Java es el principal lenguaje de programación utilizado para construir aplicaciones Androd.
+    	Java es el principal lenguaje de programación utilizado para construir aplicaciones Android.
     </div>
     <div class="header-col content-header">
 			<h2><span>Kotlin</span></h2>
@@ -250,6 +251,159 @@
     <!-- app components end -->
   </section>
   <!-- section end -->
+  <!-- part one end -->
+  <!-- part two start -->
+  <!-- section start -->
+ 	<section id="agenda" style="padding-bottom: 0px !important; padding-top: 0px !important; margin-top: -40px;">
+      <!-- android app start -->
+      <h1 class="section-title wow fadeInDown">Aplicación Android</h1>
+      <div class="header-col content-header">
+				<h2><span>Creación del proyecto</span></h2>
+      </div>
+      <div class="row education">
+      	<p>
+          Vamos a crear el proyecto base de nuestra aplicación Android, para ello ejecutar Android Studio y realizar los siguientes pasos:
+        </p>
+        <p>
+          <ol>
+              <li><span>Ejecutar Android Studio</  span></li>
+              <li>Click en la opción <span>Start a new Android Studio Project</span> o <span>File &rarr; New &rarr; New Project</span> </li>
+          		<li>Indicar las siguientes propiedades: <span>application name, company domain, & project location</span></li>
+          		<li>Click en <span>Next</span></li>
+          		<li>Configurar el <span>target android devices</span> para nuestra aplicación seleccionando la opción <span>Phone &amp; Tablet</span> &rarr; API 21: Android 5.0 (Lollipop)</li>
+          		<li>Click en <span>Next</span></li>
+          		<li>De la lista de templates disponibles, seleccionar la opción <span>Empty Activity</span></li>
+          		<li>Click en <span>Next</span></li>
+          		<li>Personalizar nuestra actividad con los valores default </li>
+          		<li>Click en <span>Finish</span></li>
+          	</ol>
+        </p>
+        <p>
+          Android Studio comenzará a construir el proyecto, una vez termine de realizar ese proceso veremos una pantalla similar a la siguiente:
+          <div class="content-picture-container">
+        		<img class="content-picture wow zoomIn"  src="images/session-one/main.png" alt="new project" />
+      		</div>
+          <span>Nota: La versión de Android Studio utilizada para generar este tutorial es 3.2.1 & la versión del SDK de Android utilizada para compilar el proyecto es 28 (Android Pie 9).</span>
+        </p>
+      </div>
+      <div class="header-col content-header">
+				<h2><span>Ejecución de la aplicación</span></h2>
+      </div>
+      <div class="row education">
+      	<p>
+          Principalmente existen dos formas con las cuales ejecutar nuestra aplicación: simuladores o dispositivos físicos.
+        </p>
+        <p>
+          <strong>Simuladores</strong>
+          <br />
+          Android Studio incluye una serie de simuladores o dispositivos virtuales que podemos utilizar para probar nuestras aplicaciones. También, podemos utilizar herramientas de terceros para simular dispostivos Android tal cómo <a href=" https://www.genymotion.com/ " target="_blank">Genymotion</a>.
+          <br />
+          <br />
+          <span>Nota: Dependiendo del hardware de la computadora, en ocasiones genymotion requiere que en el BIOS se encuentre activada la opción de virtualización.</span>
+        </p>
+        <p>
+          <strong>Dispositivos físicos</strong>
+          <br />
+          Para ejecutar la aplicación en un dispositivo físico se requiere:
+          <br />
+          <ol>
+              <li>
+                  Habilitar <span>Developer options</span>
+                  <ol>
+                      <li>Ir a <span>Settings &rarr; General &rarr; About device</span></li>
+                      <li>Ir a <span>Build number</span> & seleccionarla 7 veces</li>
+                      <li>Posteriormente, veremos un mensaje similar a <span>"Developer mode has been enabled"</span></li>
+                  </ol>
+              </li>
+              <li>
+                  Habilitar <span>USB debugging</span>
+                  <ol>
+                      <li>Selecccionar la opción <span>Settings &rarr; Developer options</span></li>
+                      <li>Seleccionar la opción <span>USB Debugging</span></li>
+                      <li>En el dialogo que se muestra, confirmar la opción <span>USB Debugging</span></li>
+                  </ol>
+              </li>
+              <li>
+                  Conectar el dispotivo mediante USB a la computadora
+                  <ol>
+                      <li>Cuando en tu dispositivo se muestra un dialogo, confirmar la opción <span>USB Debugging</span></li>
+                  </ol>
+              </li>
+          </ol>
+          <br />
+          <span>Nota: Sí el dispositivo no aparece dentro del listado, posiblemente sea necesario instalar los controlador del mismo en la computadora. Además, los pasos mencionados para habilitar la opción de desarrollador puede variar dependiendo del fabricante del dispositivo.</span>
+        </p>
+      </div>
+      <!-- android app start -->
+      <!-- projects start -->
+      <h1 class="section-title wow fadeInDown">Estructura de una aplicación</h1>
+      <div class="row education">
+      	<p>
+          Un proyecto de Android Studio contiene todo lo que necesario para desarrollar una aplicación - workspace - tal como: código fuente, recursos & configuraciones de compilación. Al crear un proyecto con Android Studio se crea la estructura necesaria para todos los archivos:
+          <ol>
+            <li>Módulos</li>
+            <li>Archivos de Aplicación</li>
+            <li>Archivos de proyecto</li>
+          </ol>
+        </p>
+        <p>
+          <strong>Módulos</strong>
+          <br />
+          Un módulo es un conjunto de archivos de origen y configuraciones de compilación que te permiten dividir tu proyecto en unidades discretas de funcionalidad. Tu proyecto puede tener uno o más módulos y un módulo puede usar otro como dependencia. Cada módulo se puede compilar, probar y depurar de forma independiente.
+          <br />
+          Android Studio ofrece algunos tipos diferentes de módulos:
+          <ol>
+            <li><span>Módulo de app para Android</span> - Proporciona un contenedor para el código fuente de tu app, los archivos de recursos y las configuraciones de niveles de app como el archivo de compilación de nivel de módulo y el archivo de manifiesto de Android. Cuando creas un proyecto nuevo, el nombre del módulo predeterminado es “app”.</li>
+            <li><span>Módulo de biblioteca</span> - Proporciona un contenedor para tu código reutilizable, que puedes usar como una dependencia en otros módulos de app o importar a otros proyectos. A nivel estructural, un módulo de biblioteca es lo mismo que un módulo de app, pero cuando se compila crea un archivo de código en lugar de un APK, de modo que no se puede instalar en un dispositivo.</li>
+            <li><span>Módulo de Google Cloud</span> - Proporciona un contenedor para tu código de backend de Google Cloud. Este módulo agrega el código y las dependencias que se necesitan para un backend de Java App Engine que usa HTTP simple, Cloud Endpoints y Google Cloud Messaging para conectar a tu app. Puedes desarrollar tu backend para proporcionar servicios de nube que necesite tu app.</li>
+          </ol>
+        </p>
+        <p>
+          <strong>Archivos de Aplicación</strong>
+          <br />
+          De forma predeterminada, Android Studio muestra los archivos de tu proyecto en la vista Android. Esta vista no refleja directamente la jerarquía existente de archivos en disco.
+          <br />
+          Dentro de cada módulo de app para Android, los archivos se muestran en los siguientes grupos:
+          <ol>
+            <li><span>manifests</span> - contiene el archivo AndroidManifest.xml.</li>
+            <li><span>java</span> - contiene los archivos de código fuente de Java separados por nombre de paquetes.</li>
+            <li><span>res</span> - contiene todos los recursos sin código, como diseños XML, strings de IU e imágenes de mapa de bits, divididos en subdirectorios pertinentes.</li>
+          </ol>
+        </p>
+        <p>
+          <strong>Archivos de proyecto</strong>
+          <br />
+          La vista de proyecto refleja la distribución real del proyecto, los más importantes son:
+          <ol>
+            <li><span>build/</span> - contiene resultados de compilación.</li>
+            <li><span>libs/</span> - contiene librerias privadas.</li>
+            <li><span>src/</span> - contiene todos los archivos de código y recursos para el módulo en divido en subdirectorios</li>
+          </ol>
+        </p>
+        <p>
+          <div style="text-align: center; margin-top: -10px; margin-bottom: -50px;">Para más información visita: <a href="https://developer.android.com/studio/projects/" target="_blank">https://developer.android.com/studio/projects/</a></div>
+        </p>
+      </div>
+      <!-- projects end -->
+      <!-- architecture start -->
+      <h1 class="section-title wow fadeInDown">Arquitectura</h1>
+      <div class="row education">
+        <p>
+          <span>La arquitectura de una aplicación es variable</span>. Esto quiere decir que no existe una arquitectura fija a seguir para cada proyecto o aplicación, esta dependerá de las caracteristicas de la aplicación e inclusive de las necesaridades del negocio.
+        </p>
+        <p>
+          Durante el transcurso de este curso estaremos desarrollando una aplicación siguiendo la guía de referencia proporcionada por google pero aplicando algunas variables utilizadas fuertemente por la actual industria de software. Google propone una arquitectura similar a la siguiente:
+          <div class="content-picture-container">
+        		<img class="content-picture wow zoomIn"  src="images/session-one/architecture.png" alt="architecture" />
+      		</div>
+        </p>
+        <p>
+          <div style="text-align: center; margin-top: -10px; margin-bottom: -50px;">Para más información visita: <a href="https://developer.android.com/jetpack/docs/guide" target="_blank">https://developer.android.com/jetpack/docs/guide</a></div>
+        </p>
+      </div>
+      <!-- architecture end -->
+  </section>
+  <!-- part two end -->
   <!-- footer -->
   <footer>
     <div class="row wow fadeInUp" style="color: white;">
