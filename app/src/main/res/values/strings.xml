@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Travel App</string>
+    <!-- welcome screen -->
+    <string name="welcome_title">Welcome</string>
 </resources>
