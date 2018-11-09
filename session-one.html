@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/animate.css">
+  <link href="css/prism.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/owl.theme.css">
   <!-- script -->
   <script src="js/modernizr.js"></script>
   <!-- favicons -->
@@ -63,6 +66,190 @@
     <div class="header-overlay"></div>
   </header>
   <!-- header end -->
+  <!-- section start -->
+ 	<section id="agenda">
+    <!-- what's android start -->
+      <h1 class="section-title wow fadeInDown">¿Qué es Android?</h1>
+      <div class="header-col content-header">
+				<h2><span>Sistema Operativo</span></h2>
+      </div>
+      <div class="row education">
+      	<p>
+          Android es un sistema operativo open source basado en Linux. Este sistema operativo es quien ejecuta las funciones del dispositivo a las cuales tienen acceso las diversas aplicaciones, es decir, el sistema operativo es quien permite utilizar funciones como almacenamiento, GPS, llamadas telefónicas, cámara, entre otras.
+          La versión más actual de este sistema operativo es Android 9 Pie
+        </p>
+        <p>
+          Android como sistema operativo esta disponible tanto para dispositivos móviles (smartphones, tablets, wearables), TV & Automóviles.
+        </p>
+      </div>
+      <div class="header-col content-header">
+				<h2><span>Plataforma de desarrollo para aplicaciones móviles</span></h2>
+      </div>
+      <div class="row education">
+      	<p>
+          Android también es una plataforma de desarrollo al proporcionar un SDK que permite construir, compilar, probar & <i>debuguear</i> aplicaciones enfocadas a usuarios finales. Es el SDK de Android el que permite que una aplicación se comunique con el sistema operativo de un dispositivo.
+        </p>
+        <p>
+          Además de un conjunto de herramientas o software que permiten ejecutar las 4 actividades antes menciondas: IDE (Integrated Enviroment Development), Frameworks, Librerias, Simuladores, entre otros.,
+        </p>
+      </div>
+      <div style="text-align: center; margin-top: -30px; margin-bottom: -50px;">Para más información visita: <a href="https://www.android.com/" target="_blank">https://www.android.com/</a></div>
+      <!-- what's android end -->
+  </section>
+  <!-- section end -->
+  <!-- architecture topic start -->
+  <section id="topic">
+    <div class="row bio-container">
+      <div class="twelve columns bio-inner">
+        <div class="six columns bio-left">
+          <h2>Arquitectura de la plataforma Android</h2>
+          <div class="pp-container">
+            <img class="wow zoomIn" src="images/android-app.png" alt="" />
+          </div>
+        </div>
+        <div class="six columns main-col wow fadeIn">
+          <div class="arrow-left"></div>
+          <p>
+            <h3>
+        		  La arquitectura de Android esta conformada en 6 capas, donde cada una de ellas utiliza componentes de la capa inferior para realizar sus funciones.
+          	</h3>
+            <div id="architecture-slides" class="owl-carousel">
+              <div>
+                <blockquote>
+                  <p>
+                    El uso de un kernel de Linux permite que Android aproveche las características de seguridad clave y permite a los fabricantes de dispositivos desarrollar controladores de hardware para un kernel conocido.
+                  </p>
+                  <cite>Kernel Linux</cite>
+                </blockquote>
+              </div>
+              <div>
+                <blockquote>
+                  <p>
+                    La capa de abstracción de hardware proporciona interfaces estándar que exponen las capacidades de hardware del dispositivo. La HAL consta de varios módulos de librerias, cada uno de los cuales implementa una interfaz para un tipo específico de componente de hardware: la cámara, el bluetooth, el GPS, entre otros.
+                  </p>
+                  <cite>Hardware Abstraction Layer (HAL)</cite>
+                </blockquote>
+              </div>
+              <div>
+                <blockquote>
+                  <p>
+                    Para dispositivos con versión 5.0 o superior cada aplicación se ejecuta en su propio proceso & con su propia instancia del Android Runtime o ART. En versiones anteriores a 5.0 este runtime se denominada DALVIK. Ambos son una variación de la máquina virtual de java es importante mencionar que no es compatible con el bytecode generador por la JVM - los ejecutables que se generan con el SDK de android tienen la extensión .dex.
+                  </p>
+                  <cite>Android Runtime</cite>
+                </blockquote>
+              </div>
+              <div>
+                <blockquote>
+                  <p>
+                    Escritas en C o C++ y compiladas para la arquitectura hardware específica del teléfono, tienen el objetivo de proporcionar a la capa de aplicaciones funcionalidad que se repite constantemente, por ejemplo: OpenGL --> motor de gráficos,
+                    multimedia --> audio, imagen & video, sqlite --> base de datos, entre otras.
+                  </p>
+                  <cite>Native Libraries</cite>
+                </blockquote>
+              </div>
+              <div>
+                <blockquote>
+                  <p>
+                    Se encuentran todas las clases & servicios que utilizan directamente las aplicaciones para realizar sus funciones: view system, resource manager, notification manager, activity manager & content providers.
+                  </p>
+                  <cite>Java Api Framework</cite>
+                </blockquote>
+              </div>
+              <div>
+                <blockquote>
+                  <p>
+                    Todas las aplicaciones instaladas en el teléfono: fabricante & usuario. <span>Nosotros los desarrolladores Android generamos contenido para este nivel utilizando la capa anterior: Java API framework</span>
+                  </p>
+                  <cite>System Apps</cite>
+                </blockquote>
+              </div>
+            </div>
+          </p>
+          <div style="text-align: center; margin-top: -10px;"><a href="https://developer.android.com/guide/platform/" target="_blank" style="color: #11ABB0;">más información</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- architecture topic end -->
+  <!-- section start -->
+ 	<section id="agenda">
+    <!-- programming languages start -->
+    <h1 class="section-title wow fadeInDown">Lenguajes de Programación</h1>
+    <div class="header-col content-header">
+			<h2><span>Java</span></h2>
+    </div>
+    <div class="row education">
+    	Java es el principal lenguaje de programación utilizado para construir aplicaciones Androd.
+    </div>
+    <div class="header-col content-header">
+			<h2><span>Kotlin</span></h2>
+    </div>
+    <div class="row education">
+    	En el Google I/O del 2017 se publico oficialmente el soporte para utilizar Kotlin como lenguaje de programación en el desarrollo de aplicaciones Android.
+    </div>
+    <div class="header-col content-header">
+			<h2><span>Multiplataforma</span></h2>
+    </div>
+    <div class="row education">
+    	Adicional, disponemos de diversas multiplataformas que permiten construir aplicaciones para dispositivos Android utilizando otros lenguajes de programación: Entre estas plataformas podemos encontrar: react native, native script, xamarin, ionic, por mencionar algunas.
+    </div>
+    <!-- programming languages end -->
+    <!-- app components start -->
+    <h1 class="section-title wow fadeInDown">Componentes de una Aplicación</h1>
+    <div class="header-col content-header">
+			<h2><span>App Components</span></h2>
+    </div>
+    <div class="row education">
+      <p>
+        Los componentes de la aplicación son los componentes básicos de una aplicación de Android. Cada componente es un punto de entrada a través del cual el sistema o un usuario pueden ingresar a su aplicación. Algunos componentes dependen de otros. Hay cuatro tipos diferentes de componentes de aplicaciones:
+        <ol>
+          <li>Activities</li>
+          <li>Services</li>
+          <li>Broadcast receivers</li>
+          <li>Content providers</li>
+        </ol>
+      </p>
+      <p>
+        <strong>Activity</strong>
+        <br />
+        Una actividad representa una pantalla con interfaz de usuario. Si bien las actividades trabajan juntas para proporcionar una experiencia de usuario consistente en la aplicación de correo electrónico, cada una es independiente de las demás.
+      </p>
+      <p>
+        <strong>Services</strong>
+        <br />
+        Un servicio es un componente que se ejecuta en segundo plano para realizar operaciones prolongadas o tareas para procesos remotos. Un servicio no proporciona una interfaz de usuario.
+      </p>
+      <p>
+        <strong>Proveedores de contenido</strong>
+        <br />
+        Un proveedor de contenido administra un conjunto compartido de datos de la app. Puedes almacenar los datos en el sistema de archivos, en una base de datos SQLite, en la Web o en cualquier otra ubicación de almacenamiento persistente a la que tu aplicación pueda acceder. A través del proveedor de contenido, otras aplicaciones pueden consultar o incluso modificar los datos (si el proveedor de contenido lo permite).
+      </p>
+      <p>
+        <strong>Content providers</strong>
+        <br />
+        Un receptor de mensajes es un componente que responde a los anuncios de mensajes en todo el sistema. Muchos mensajes son originados por el sistema; por ejemplo, un mensaje que anuncie que se apagó la pantalla, que la batería tiene poca carga o que se tomó una foto. Las aplicaciones también pueden iniciar mensajes; por ejemplo, para permitir que otras aplicaciones sepan que se descargaron datos al dispositivo y están disponibles para usarlos. Si bien los receptores de mensajes no exhiben una interfaz de usuario, pueden crear una notificación de la barra de estado para alertar al usuario cuando se produzca un evento de mensaje. Aunque, comúnmente, un receptor de mensajes es simplemente una "puerta de enlace" a otros componentes y está destinado a realizar una cantidad mínima de trabajo. Por ejemplo, podría iniciar un servicio para que realice algunas tareas en función del evento.
+      </p>
+      <p>
+        <div style="text-align: center; margin-top: -10px; margin-bottom: -50px;">Para más información visita: <a href="https://developer.android.com/guide/components/fundamentals" target="_blank">https://developer.android.com/guide/components/fundamentals</a></div>
+      </p>
+    </div>
+    <!-- app components end -->
+    <!-- app components start -->
+    <h1 class="section-title wow fadeInDown">Ciclo de vida de una aplicación</h1>
+    <div class="row education">
+    	<p>
+        En la mayoría de los casos, cada aplicación de Android se ejecuta en su propio proceso de Linux. Este proceso se crea para la aplicación cuando se debe ejecutar parte de su código, y se mantendrá en ejecución hasta que ya no sea necesario y el sistema necesite recuperar su memoria para que otras aplicaciones la utilicen. Es decir, un proceso de aplicación no está directamente controlada por la propia aplicación si no que lo determina el sistema operativo.
+      </p>
+      <p>
+        Los diferentes componentes de la aplicación (en particular Activity, Service y BroadcastReceiver) afectan la vida útil del proceso de la aplicación. No utilizar estos componentes correctamente puede hacer que el sistema anule el proceso de la aplicación mientras realiza un trabajo importante.
+      </p>
+      <p>
+        <div style="text-align: center; margin-top: -10px; margin-bottom: -50px;">Para más información visita: <a href="https://developer.android.com/guide/components/activities/process-lifecycle" target="_blank">https://developer.android.com/guide/components/activities/process-lifecycle</a></div>
+      </p>
+    </div>
+    <!-- app components end -->
+  </section>
+  <!-- section end -->
   <!-- footer -->
   <footer>
     <div class="row wow fadeInUp" style="color: white;">
@@ -79,10 +266,12 @@
   <!-- footer end-->
   <!-- java script -->
   <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
   <script src="js/waypoints.js"></script>
   <script src="js/jquery.fittext.js"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/jquery.nicescroll.min.js"></script>
+  <script src="js/prism.js"></script>
   <script src="js/script.js"></script>
 </body>
 

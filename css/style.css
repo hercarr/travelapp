@@ -527,7 +527,7 @@ ul#nav li a:hover {
 /* topic */
 
 #topic {
-  background: url(../images/material-bg.jpg) no-repeat fixed center center / cover;
+  background: url(../images/bg-black.png) no-repeat fixed center center / cover;
   overflow: hidden;
 }
 
