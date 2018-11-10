@@ -2,4 +2,8 @@
     <string name="app_name">Travel App</string>
     <!-- welcome screen -->
     <string name="welcome_title">Welcome</string>
+    <string name="company_name">Quality &amp; Knowledge</string>
+    <string name="slogan_app">tu aplicación de lugares favoritos</string>
+    <string name="not_account_lbl">¿Aún no tienes una cuenta? Registrate</string>
+    <string name="login_lbl">Iniciar sesión</string>
 </resources>
