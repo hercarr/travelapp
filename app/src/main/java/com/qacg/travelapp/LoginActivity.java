@@ -1,16 +1,21 @@
 package com.qacg.travelapp;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LoginActivity extends AppCompatActivity {
+import com.qacg.travelapp.models.User;
+import com.qacg.travelapp.presents.LoginPresenter;
+import com.qacg.travelapp.views.ILoginView;
+
+public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private static final String TAG = LoginActivity.class.getName();
+
+    private LoginPresenter presenter;
 
     private TextView txtUsername;
     private TextView txtPassword;
@@ -24,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init() {
+        presenter = new LoginPresenter(this);
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
 
@@ -31,29 +37,23 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateUser();
+                presenter.validateUser(txtUsername.getText().toString(), txtPassword.getText().toString());
             }
         });
     }
 
-    private void validateUser() {
-        String username = txtUsername.getText().toString();
-        String password = txtPassword.getText().toString();
-
-        if (username.length() == 0 || password.length() == 0) {
-            // TODO - mostrar una alerta de error
-            Log.d(TAG, "Por favor, proporcione sus credenciales de acceso para iniciar sesión.");
-            return;
-        }
-
-        if (username.equals("android") && password.equals("apps")) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        } else {
-            // TODO - mostrar una alerta de error
-            Log.d(TAG, "Las credenciales de accesos proporcionadas son incorrectas. Intente nuevamente.");
-            return;
-        }
+    @Override
+    public void userFound(User user) {
+        Log.d(TAG, "userFound: Welcome"+user.getUserName());
     }
 
+    @Override
+    public void userNotFound() {
+        Log.d(TAG, "userNotFound");
+    }
+
+    @Override
+    public void emptyFields() {
+        Log.d(TAG, "emptyFields: ");
+    }
 }
