@@ -5,5 +5,9 @@
     <string name="company_name">Quality &amp; Knowledge</string>
     <string name="slogan_app">tu aplicación de lugares favoritos</string>
     <string name="not_account_lbl">¿Aún no tienes una cuenta? Registrate</string>
-    <string name="login_lbl">Iniciar sesión</string>
+    <string name="username_lbl">Nombre de usuario</string>
+    <string name="password_lbl">Contraseña</string>
+    <string name="forgotten_password_lbl">¿Olvidaste tu contraseña?</string>
+    <string name="login_btn">Iniciar sesión</string>
+    <string name="come_in_btn">Entrar</string>
 </resources>
