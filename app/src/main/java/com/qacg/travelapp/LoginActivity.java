@@ -1,6 +1,8 @@
 package com.qacg.travelapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,8 +43,16 @@ public class LoginActivity extends AppCompatActivity {
         String password = txtPassword.getText().toString();
 
         if (username.length() == 0 || password.length() == 0) {
-            // TODO - mostrar una alerta de error
-            Log.d(TAG, "Por favor, proporcione sus credenciales de acceso para iniciar sesión.");
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LightDialogTheme);
+            builder.setTitle(R.string.app_name);
+            builder.setMessage(R.string.empty_credentials_msg);
+            builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return;
         }
 
@@ -50,8 +60,16 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {
-            // TODO - mostrar una alerta de error
-            Log.d(TAG, "Las credenciales de accesos proporcionadas son incorrectas. Intente nuevamente.");
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LightDialogTheme);
+            builder.setTitle(R.string.app_name);
+            builder.setMessage(R.string.not_user_found_msg);
+            builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return;
         }
     }
