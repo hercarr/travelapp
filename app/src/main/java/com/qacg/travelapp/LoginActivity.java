@@ -1,8 +1,11 @@
 package com.qacg.travelapp;
 
-import android.os.Bundle;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,8 +15,6 @@ import com.qacg.travelapp.presents.LoginPresenter;
 import com.qacg.travelapp.views.ILoginView;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
-
-    private static final String TAG = LoginActivity.class.getName();
 
     private LoginPresenter presenter;
 
@@ -44,16 +45,35 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void userFound(User user) {
-        Log.d(TAG, "userFound: Welcome"+user.getUserName());
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @Override
     public void userNotFound() {
-        Log.d(TAG, "userNotFound");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LightDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage(R.string.not_user_found_msg);
+        builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
     public void emptyFields() {
-        Log.d(TAG, "emptyFields: ");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LightDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage(R.string.empty_credentials_msg);
+        builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
