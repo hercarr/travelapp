@@ -65,7 +65,7 @@
     </header>
     <!-- header end -->
     <section id="agenda">
-        <h1 class="section-title wow fadeInDown">Patrón MVP
+        <h1 class="section-title wow fadeInDown">PATRÓN MVP
         </h1>
         <div class="header-col content-header">
             <h2><span>MVP - Model View Presenter</span></h2>
@@ -371,7 +371,132 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
             </code> 
         </pre>
             <span style="color: #e91e63;">It's time to run the project & test it</span>
+        </div>
+    </section>
 
+    <section id="agenda" style="padding-bottom: 0px !important; padding-top: 0px !important; margin-top: -40px;">
+        <h1 class="section-title wow fadeInDown">FRAGMENTS & FRAGMENT MANAGER
+        </h1>
+        <div class="row education">
+            <p>Un Fragment representa un comportamiento o una parte de la interfaz de usuario en una Activity. Puedes combinar múltiples fragmentos en una sola actividad para crear una IU multipanel y volver a usar un fragmento en múltiples actividades. Puedes pensar en un fragmento como una sección modular de una actividad que tiene su ciclo de vida propio, recibe sus propios eventos de entrada y que puedes agregar o quitar mientras la actividad se esté ejecutando (algo así como una "subactividad" que puedes volver a usar en diferentes actividades).
+            </p>
+
+            <p>La siguiente imagen es un ejemplo de la manera en que dos módulos de la IU definidos por fragmentos se pueden combinar en una actividad para un diseño de tablet y se presentan por separado para un diseño de teléfono.</p>
+
+            <img src="https://developer.android.com/images/fundamentals/fragments.png" />
+        </div>
+        <div class="header-col content-header">
+            <h2><span>Implementación de Fragmentos</span></h2>
+        </div>
+
+        <div class="row education">
+            <p>
+                Para crear un fragmento realizaremos los siguientes pasos:<br />
+
+                1 - Crear un paquete especial para los fragmentos. <br />
+                2 - Click derecho sobre el paquete > New > Fragment > Fragment Blank.<br />
+                3 - En el dialogo ingresaremos los datos necesarios.<br />
+                4 - Realizaremos un patrón Singleto para obtener una instancia del fragmento:
+            </p>
+            <pre><code class="language-java">
+            <script type="prism-java">
+package com.qacg.travelapp.fragments;
+
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.qacg.travelapp.R;
+
+/**
+ * Fragmento que muestra la lista de lugares.
+ */
+public class PlacesFragment extends Fragment {
+
+    private static PlacesFragment instance;
+
+    public static PlacesFragment getInstance() {
+        if (instance == null) {
+            instance = new PlacesFragment();
+        }
+        return instance;
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_places, container, false);
+    }
+
+}   
+            </script>
+            </code> 
+        </pre>
+
+            <p>Agregando el fragmento a una actividad</p>
+
+            <p>5 - Modificar el layout para recibir el fragmento:</p>
+            <pre><code class="language-markup"><script type="prism-markup">
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/mainFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
+            </script></code></pre>
+
+
+            <p> Y por ultimo:<br />
+                6 - Cargar el fragmento desde el <span>MainActivity.java</span>
+            </p>
+            <pre><code class="language-java">
+            <script type="prism-java">
+package com.qacg.travelapp;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+
+import com.qacg.travelapp.fragments.PlacesFragment;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if (false) {
+            startActivity(new Intent(this, WelcomeActivity.class));
+            finish();
+        } else {
+            loadFragment(R.id.mainFragment,PlacesFragment.getInstance());
+        }
+    }
+
+    private void loadFragment(int idReplace,Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(idReplace, fragment)
+                .commit();
+    }
+}
+</script></code></pre>
         </div>
     </section>
 
