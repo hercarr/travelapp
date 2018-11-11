@@ -13,4 +13,7 @@
     <string name="accept_bnt">Aceptar</string>
     <string name="empty_credentials_msg">Por favor, proporcione sus credenciales de acceso para iniciar sesión.</string>
     <string name="not_user_found_msg">Las credenciales de accesos proporcionadas son incorrectas. Intente nuevamente.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
