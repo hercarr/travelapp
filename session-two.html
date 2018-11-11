@@ -67,10 +67,6 @@
     <section id="agenda">
         <h1 class="section-title wow fadeInDown">PATRÓN MVP
         </h1>
-        <div class="header-col content-header">
-            <h2><span>MVP - Model View Presenter</span></h2>
-        </div>
-
         <div class="row education">
             <p>El patrón de diseño <span>MVP</span> o Model View Presenter <span>separa la capa de presentación de la lógica de la aplicación</span>, por ende, su objetivo es que todo lo relacionado con cómo funciona la interfaz de usuario este separado del cómo representarlo en pantalla.
             </p>
@@ -90,8 +86,7 @@
 
             <p>1 - Incorporemos la clase <span>User.java</span> para representar nuestro <span>modelo</span> Usuario</p>
             <pre><code class="language-java">
-            <script type="prism-java">
-package com.qacg.travelapp.models;
+            <script type="prism-java">package com.qacg.travelapp.models;
 
 /**
  * Modelo que representa al usuario de la aplicación.
@@ -115,15 +110,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-}
-           </script>
+}</script>
             </code> 
         </pre>
 
             <p>2 - Definamos la capa <span>view</span> declarando una interfaz que contengan los métodos para notificar al usuario el resultado de la operación:</p>
             <pre><code class="language-java">
-            <script type="prism-java">
-package com.qacg.travelapp.views;
+            <script type="prism-java">package com.qacg.travelapp.views;
 
 import com.qacg.travelapp.models.User;
 
@@ -136,15 +129,13 @@ public interface ILoginView {
     void userNotFound();
 
     void emptyFields();
-}
-            </script>
+}</script>
             </code> 
         </pre>
 
             <p>3 - Declaramos la clase <span>LoginPresenter.java</span>. Esta clase deberá recibir en el constructor un objeto de tipo vista y definara el método para validar el usuario:</p>
             <pre><code class="language-java">
-            <script type="prism-java">
-package com.qacg.travelapp.presents;
+            <script type="prism-java">package com.qacg.travelapp.presents;
 
 import com.qacg.travelapp.models.User;
 import com.qacg.travelapp.views.ILoginView;
@@ -183,8 +174,7 @@ public class LoginPresenter {
                 4 - La clase <span>LoginActivity.java</span> implementará la interfaz <span>ILoginView.java</span> de la siguiente manera:
             </p>
             <pre><code class="language-java">
-            <script type="prism-java">
-package com.qacg.travelapp;
+            <script type="prism-java">package com.qacg.travelapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -275,8 +265,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void emptyFields() {
     }
-}
-           </script>
+} </script>
             </code> 
         </pre>
 
@@ -288,8 +277,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
             </p>
 
             <pre><code class="language-java">
-            <script type="prism-java">
-package com.qacg.travelapp;
+            <script type="prism-java">package com.qacg.travelapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -366,8 +354,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-}
-            </script>
+}</script>
             </code> 
         </pre>
             <span style="color: #e91e63;">It's time to run the project & test it</span>
@@ -396,11 +383,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 1 - Crear un paquete especial para los fragmentos. <br />
                 2 - Click derecho sobre el paquete > New > Fragment > Fragment Blank.<br />
                 3 - En el dialogo ingresaremos los datos necesarios.<br />
-                4 - Realizaremos un patrón Singleto para obtener una instancia del fragmento:
             </p>
             <pre><code class="language-java">
-            <script type="prism-java">
-package com.qacg.travelapp.fragments;
+            <script type="prism-java">package com.qacg.travelapp.fragments;
 
 
 import android.os.Bundle;
@@ -417,13 +402,8 @@ import com.qacg.travelapp.R;
  */
 public class PlacesFragment extends Fragment {
 
-    private static PlacesFragment instance;
-
     public static PlacesFragment getInstance() {
-        if (instance == null) {
-            instance = new PlacesFragment();
-        }
-        return instance;
+        return new PlacesFragment();
     }
 
     @Override
@@ -431,17 +411,14 @@ public class PlacesFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_places, container, false);
     }
-
-}   
-            </script>
+}</script>
             </code> 
         </pre>
 
             <p>Agregando el fragmento a una actividad</p>
 
-            <p>5 - Modificar el layout para recibir el fragmento:</p>
-            <pre><code class="language-markup"><script type="prism-markup">
-<?xml version="1.0" encoding="utf-8"?>
+            <p>4 - Modificar el layout para recibir el fragmento:</p>
+            <pre><code class="language-markup"><script type="prism-markup"><?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -457,15 +434,13 @@ public class PlacesFragment extends Fragment {
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
-            </script></code></pre>
+</android.support.constraint.ConstraintLayout></script></code></pre>
 
 
             <p> Y por ultimo:<br />
-                6 - Cargar el fragmento desde el <span>MainActivity.java</span>
+                5 - Cargar el fragmento desde el <span>MainActivity.java</span>
             </p>
-            <pre><code class="language-java">
-            <script type="prism-java">
+            <pre><code class="language-java"><script type="prism-java">
 package com.qacg.travelapp;
 
 import android.content.Intent;
@@ -495,8 +470,569 @@ public class MainActivity extends AppCompatActivity {
                 .replace(idReplace, fragment)
                 .commit();
     }
+}</script></code></pre>
+
+            <span style="color: #e91e63;">It's time to run the project & test it</span>
+        </div>
+    </section>
+
+    <section id="agenda">
+        <div class="row education">
+            <h1 class="section-title wow fadeInDown">RECYCLER VIEW | ADAPTER VIEW
+            </h1>
+
+            <p>Si la aplicación necesita mostrar una lista de elementos basados en grandes conjuntos de datos (o datos que cambian con frecuencia), utiliza RecyclerView la cual es una versión más avanzada y flexible de ListView.</p>
+        </div>
+
+        <div class="header-col content-header">
+            <h2><span>Creación del Recycler View</span></h2>
+        </div>
+        <div class="row education">
+            <p>
+                Para incorporar el recycler view vamos a:<br />
+                6 - Modificar el layout <span>fragment_places</span> y agregar el widget RecyclerView:
+            </p>
+            <pre><code class="language-markup"><script type="prism-markup"><?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PlacesFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPlaces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>            </script></code></pre>
+
+            <p>7 - Instanciar el widget en el <span>PlacesFragment.java</span>: </p>
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.fragments;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.qacg.travelapp.R;
+
+/**
+ * Fragmento que muestra la lista de lugares.
+ */
+public class PlacesFragment extends Fragment {
+
+    private RecyclerView places;
+
+    public static PlacesFragment getInstance() {
+        return new PlacesFragment();
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view= inflater.inflate(R.layout.fragment_places, container, false);
+        init(view);
+        return view;
+    }
+
+    private void init(View view){
+        places= view.findViewById(R.id.recyclerViewPlaces);
+        places.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+}  </script></code></pre>
+        </div>
+
+        <div class="header-col content-header">
+            <h2>ADAPTER VIEW</h2>
+        </div>
+        <div class="row education">
+            El AdapterView es un conjunto de componentes que muestra los elementos cargados en un adaptador.<br />
+            1 - El primer paso será construir la vista:
+
+            <pre><code class="language-markup"><script type="prism-markup"><?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile" />
+
+        <TextView
+            android:id="@+id/nameProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@id/imageProfile"
+            tools:text="Scarlett Johansson" />
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#a8b6c8"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@id/imageProfile"
+            app:layout_constraintTop_toBottomOf="@id/nameProfile"
+            tools:text="hace 2 días" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imagePlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/image"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutPlaceOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/imagePlace">
+
+        <ImageView
+            android:id="@+id/imageOptionFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/ic_favorite_border"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageOptionChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/ic_chat_bubble_outline"
+            app:layout_constraintStart_toEndOf="@id/imageOptionFavorite" />
+
+        <ImageView
+            android:id="@+id/imageOptionNear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/ic_near_me"
+            app:layout_constraintStart_toEndOf="@id/imageOptionChat" />
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewLineOne"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#4da8b6c8"
+        app:layout_constraintTop_toBottomOf="@id/layoutPlaceOption" />
+
+    <LinearLayout
+        android:id="@+id/layoutLikes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:layout_constraintTop_toBottomOf="@id/viewLineOne">
+
+        <ImageView
+            android:id="@+id/imageLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/ic_favorite_border" />
+
+        <TextView
+            android:id="@+id/totalLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:padding="5dp"
+            android:textColor="#323b45"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="78 likes" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textTitlePlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="#323b45"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/layoutLikes"
+        tools:text="Playa del Carmen" />
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textTitlePlace"
+        tools:text="Es una de las playas preferidas para vacacionar en la Riviera Maya, disfrutando su  fina y blanca arena bajo aguas verde-azules." />
+
+    <TextView
+        android:id="@+id/textNumberComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="#a8b6c8"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/textDescription"
+        tools:text="14 comentarios" />
+</android.support.constraint.ConstraintLayout> </script></code></pre>
+            <p>2 - Para tener un mejor control de los elementos, vamos a realizar un Modelo de esta vista:</p>
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.models;
+
+public class Place {
+    private Profile profile;
+    private String date;
+    private String urlImagePlace;
+    private boolean isFavorite;
+    private double latitude, longitude;
+    private int totalLikes;
+    private String namePlace;
+    private String description;
+    private int totalComments;
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getUrlImagePlace() {
+        return urlImagePlace;
+    }
+
+    public void setUrlImagePlace(String urlImagePlace) {
+        this.urlImagePlace = urlImagePlace;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public int getTotalLikes() {
+        return totalLikes;
+    }
+
+    public void setTotalLikes(int totalLikes) {
+        this.totalLikes = totalLikes;
+    }
+
+    public String getNamePlace() {
+        return namePlace;
+    }
+
+    public void setNamePlace(String namePlace) {
+        this.namePlace = namePlace;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getTotalComments() {
+        return totalComments;
+    }
+
+    public void setTotalComments(int totalComments) {
+        this.totalComments = totalComments;
+    }
 }
 </script></code></pre>
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.models;
+
+public class Profile {
+
+    private String urlImageProfile;
+    private String nameProfile;
+
+    public String getUrlImageProfile() {
+        return urlImageProfile;
+    }
+
+    public void setUrlImageProfile(String urlImageProfile) {
+        this.urlImageProfile = urlImageProfile;
+    }
+
+    public String getNameProfile() {
+        return nameProfile;
+    }
+
+    public void setNameProfile(String nameProfile) {
+        this.nameProfile = nameProfile;
+    }
+}
+</script></code></pre>
+
+            <p>3 - Y se crea el adaptador:</p>
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.adapters;
+
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.qacg.travelapp.R;
+import com.qacg.travelapp.models.Place;
+
+import java.util.List;
+
+public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
+
+    private List<Place> places;
+
+    public void addList(List<Place> places) {
+        if (this.places != null)
+            this.places.addAll(places);
+        else if (places != null && !places.isEmpty())
+            this.places = places;
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new PlaceViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.place_item, viewGroup, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PlaceViewHolder placeViewHolder, int i) {
+        placeViewHolder.dataBinding(places.get(i));
+    }
+
+    @Override
+    public int getItemCount() {
+        return places != null ? places.size() : 0;
+    }
+
+    class PlaceViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView nameProfile;
+        private TextView date;
+        private TextView totalLikes;
+        private TextView namePlace;
+        private TextView description;
+        private TextView numberComments;
+
+
+        public PlaceViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nameProfile = itemView.findViewById(R.id.nameProfile);
+            date = itemView.findViewById(R.id.textDate);
+            totalLikes = itemView.findViewById(R.id.totalLikes);
+            namePlace = itemView.findViewById(R.id.textTitlePlace);
+            description = itemView.findViewById(R.id.textDescription);
+            numberComments = itemView.findViewById(R.id.textNumberComments);
+        }
+
+        void dataBinding(Place place) {
+            nameProfile.setText(place.getProfile().getNameProfile());
+            date.setText(place.getDate());
+            totalLikes.setText(String.valueOf(place.getTotalLikes()));
+            namePlace.setText(place.getNamePlace());
+            description.setText(place.getDescription());
+            numberComments.setText(String.valueOf(place.getTotalComments()));
+        }
+
+
+    }
+}</script></code></pre>
+            <p>4 - Por ultimo implementamos el patrón MVP:</p>
+
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.views;
+
+import com.qacg.travelapp.models.Place;
+
+import java.util.List;
+
+public interface IPlacesView {
+
+    void placesFound(List<Place> places);
+    void placesNotFound();
+}</script></code></pre>
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.presents;
+
+import com.qacg.travelapp.models.Place;
+import com.qacg.travelapp.models.Profile;
+import com.qacg.travelapp.views.IPlacesView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlacesPresenter {
+
+    private IPlacesView view;
+
+    public PlacesPresenter(IPlacesView view) {
+        this.view = view;
+    }
+
+    public void loadPlaces() {
+        List<Place> tempPlaces = new ArrayList<>();
+        Place tempPlace = new Place();
+        Profile tempProfile = new Profile();
+
+        tempProfile.setNameProfile("Scarlett Johansson");
+        tempPlace.setProfile(tempProfile);
+        tempPlace.setNamePlace("Playa del Carmen");
+        tempPlace.setDate("hace 2 días");
+        tempPlace.setTotalLikes(72);
+        tempPlace.setDescription("Es una de las playas preferidas para vacacionar en la Riviera Maya, disfrutando su  fina y blanca arena bajo aguas verde-azules.");
+        tempPlace.setTotalComments(14);
+        tempPlaces.add(tempPlace);
+        tempPlace=new Place();
+
+        tempPlace.setProfile(tempProfile);
+        tempPlace.setNamePlace("Boca de Río");
+        tempPlace.setDate("hace 2 días");
+        tempPlace.setTotalLikes(42);
+        tempPlace.setDescription("Es una de las playas preferidas para vacacionar en Veracruz, disfrutando su  fina y blanca arena bajo aguas negras.");
+        tempPlace.setTotalComments(34);
+        tempPlaces.add(tempPlace);
+
+        view.placesFound(tempPlaces);
+
+
+    }
+}</script></code></pre>
+
+            <pre><code class="language-java"><script type="prism-java">package com.qacg.travelapp.fragments;
+
+
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.qacg.travelapp.R;
+import com.qacg.travelapp.adapters.PlaceAdapter;
+import com.qacg.travelapp.models.Place;
+import com.qacg.travelapp.presents.PlacesPresenter;
+import com.qacg.travelapp.views.IPlacesView;
+
+import java.util.List;
+
+/**
+ * Fragmento que muestra la lista de lugares.
+ */
+public class PlacesFragment extends Fragment implements IPlacesView {
+
+    private RecyclerView places;
+    private PlaceAdapter adapter;
+    private PlacesPresenter presenter;
+
+    public static PlacesFragment getInstance() {
+        return new PlacesFragment();
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view= inflater.inflate(R.layout.fragment_places, container, false);
+        init(view);
+        return view;
+    }
+
+    private void init(View view){
+        places= view.findViewById(R.id.recyclerViewPlaces);
+        places.setLayoutManager(new LinearLayoutManager(getContext()));
+        places.setHasFixedSize(true);
+        adapter= new PlaceAdapter();
+        places.setAdapter(adapter);
+        presenter = new PlacesPresenter(this);
+        presenter.loadPlaces();
+    }
+
+    @Override
+    public void placesFound(List<Place> places) {
+        adapter.addList(places);
+    }
+
+    @Override
+    public void placesNotFound() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.LightDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage(R.string.not_places_found_msg);
+        builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+}
+</script></code></pre>
+
         </div>
     </section>
 
