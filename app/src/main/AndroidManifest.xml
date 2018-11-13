@@ -21,7 +21,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:parentActivityName=".WelcomeActivity"/>
+            android:parentActivityName=".WelcomeActivity"
+            android:theme="@style/TransparentAppTheme"
+            android:label=""/>
     </application>
 
 </manifest>

@@ -144,7 +144,8 @@ public class SharedPreferenceUtils {
      * Clears all the preferences stored
      */
     public void clear() {
-        mSharedPreferencesEditor.clear().commit();
+        mSharedPreferencesEditor = mSharedPreferences.edit();
+        mSharedPreferencesEditor.clear().apply();
     }
 
 }
