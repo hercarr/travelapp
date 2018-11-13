@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">Travel App</string>
     <!-- welcome screen -->
-    <string name="welcome_title">Welcome</string>
+    <string name="welcome_title">Bienvenido</string>
     <string name="company_name">Quality &amp; Knowledge</string>
     <string name="slogan_app">tu aplicación de lugares favoritos</string>
     <string name="not_account_lbl">¿Aún no tienes una cuenta? Registrate</string>
+    <string name="login_btn">Iniciar sesión</string>
+    <!-- login screen -->
     <string name="username_lbl">Nombre de usuario</string>
     <string name="password_lbl">Contraseña</string>
-    <string name="forgotten_password_lbl">¿Olvidaste tu contraseña?</string>
-    <!-- welcome screen -->
-    <string name="login_btn">Iniciar sesión</string>
     <string name="come_in_btn">Entrar</string>
     <string name="accept_bnt">Aceptar</string>
+    <string name="forgotten_password_lbl">¿Olvidaste tu contraseña?</string>
     <string name="empty_credentials_msg">Por favor, proporcione sus credenciales de acceso para iniciar sesión.</string>
     <string name="not_user_found_msg">Las credenciales de accesos proporcionadas son incorrectas. Intente nuevamente.</string>
+    <!-- places screen -->
     <string name="not_places_found_msg">Lista de lugares vacia.</string>
-
 </resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Travel App</string>
+    <!-- welcome screen -->
+    <string name="welcome_title">Welcome</string>
+    <string name="company_name">Quality &amp; Knowledge</string>
+    <string name="slogan_app">your favorite travels app</string>
+    <string name="not_account_lbl">Don\'t have an account? Register</string>
+    <string name="login_btn">Log in</string>
+    <!-- login screen -->
+    <string name="username_lbl">Username</string>
+    <string name="password_lbl">Password</string>
+    <string name="come_in_btn">Enter</string>
+    <string name="accept_bnt">Accept</string>
+    <string name="forgotten_password_lbl">Forgot your password?</string>
+    <string name="empty_credentials_msg">Please, you need to enter your username and password.</string>
+    <string name="not_user_found_msg">Username and password are incorrect. Try again.</string>
+    <!-- places screen -->
+    <string name="not_places_found_msg">No places found.</string>
+</resources>
