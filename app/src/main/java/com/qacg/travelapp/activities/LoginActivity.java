@@ -1,4 +1,4 @@
-package com.qacg.travelapp;
+package com.qacg.travelapp.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.qacg.travelapp.R;
 import com.qacg.travelapp.models.User;
 import com.qacg.travelapp.presents.LoginPresenter;
 import com.qacg.travelapp.utils.Constants;

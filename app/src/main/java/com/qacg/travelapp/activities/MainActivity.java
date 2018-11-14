@@ -1,10 +1,11 @@
-package com.qacg.travelapp;
+package com.qacg.travelapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import com.qacg.travelapp.R;
 import com.qacg.travelapp.fragments.PlacesFragment;
 import com.qacg.travelapp.utils.Constants;
 import com.qacg.travelapp.utils.SharedPreferenceUtils;
