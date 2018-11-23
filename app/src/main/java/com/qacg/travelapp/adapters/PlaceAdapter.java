@@ -16,6 +16,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.qacg.travelapp.R;
 import com.qacg.travelapp.models.Place;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.ocpsoft.prettytime.PrettyTime;
+
 import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
@@ -28,10 +33,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     }
 
     public void addList(List<Place> places) {
-        if (this.places != null)
-            this.places.addAll(places);
-        else if (places != null && !places.isEmpty())
-            this.places = places;
+        this.places = places;
         notifyDataSetChanged();
     }
 
@@ -44,6 +46,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     @Override
     public void onBindViewHolder(@NonNull PlaceViewHolder placeViewHolder, int i) {
         placeViewHolder.dataBinding(places.get(i));
+    }
+
+    private String parseToElapsedTime(String stringDatetime) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        return new PrettyTime().format( DateTime.parse(stringDatetime, formatter).toDate() );
     }
 
     @Override
@@ -87,11 +94,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
                     .apply(requestOptions)
                     .into(imagePlace);
             nameProfile.setText(place.getProfile().getNameProfile());
-            date.setText(place.getDate());
-            totalLikes.setText(String.valueOf(place.getTotalLikes()));
+            date.setText(parseToElapsedTime(place.getDate()));
+            totalLikes.setText(mContext.getResources().getString(R.string.likes_placeholder, String.valueOf(place.getTotalLikes())));
             namePlace.setText(place.getNamePlace());
             description.setText(place.getDescription());
-            numberComments.setText(String.valueOf(place.getTotalComments()));
+            numberComments.setText(mContext.getResources().getString(R.string.comments_placeholder, String.valueOf(place.getTotalComments())));
         }
     }
 }

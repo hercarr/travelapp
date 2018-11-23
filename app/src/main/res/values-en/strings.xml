@@ -19,4 +19,5 @@
     <!-- places screen -->
     <string name="not_places_found_msg">No places found.</string>
     <string name="comments_placeholder">%1s comments</string>
+    <string name="likes_placeholder">%1s likes</string>
 </resources>

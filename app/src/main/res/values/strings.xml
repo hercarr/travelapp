@@ -19,4 +19,5 @@
     <!-- places screen -->
     <string name="not_places_found_msg">Lista de lugares vacia.</string>
     <string name="comments_placeholder">%1s comentarios</string>
+    <string name="likes_placeholder">%1s me gusta</string>
 </resources>
