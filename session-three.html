@@ -79,6 +79,8 @@
             <span><a href="https://github.com/google/gson">Gson</a> - </span>Se utiliza para la serialización y
             deserializacion de objetos Java a JSON y al revés ( de JSON a objetos Java).<br/>
             <span><a href="https://bumptech.github.io/glide/">Glide</a> - </span>Librería utilizada para descargar imágenes desde una URL.<br/>
+            <span><a href="https://github.com/dlew/joda-time-android">JodaTime</a> - </span>Libreria que facilita enormemente el manejo de fechas, parseo, formato, etc.<br/>
+            <span><a href="https://github.com/ocpsoft/prettytime">Prettytime</a> - </span>Formato de fechas para Java con un formato de redes sociales.<br/>
             <span><a href="https://realm.io/docs/java/latest">Realm</a> - </span>Es un motor de bases de datos local utilizada en Android.<br/>
             <span><a href="https://developers.google.com/maps/documentation/android-sdk/intro"></a>Google Maps - </span>Integración con mapas de Google.<br/>
         </p>
@@ -167,7 +169,7 @@ public class ResourceGenerator {
     /**
      * Url base de los servicios de la aplicación.
      */
-    private static final String BASE_URL = "http://192.168.0.98:3000/api/";
+    private static final String BASE_URL = "https://travelapp-api.herokuapp.com/api/";
 
     private static ITravelResource travelResource;
 
@@ -398,12 +400,196 @@ public class LoginPresenter {
             </li>
         </ol>
     </div>
-    <!-- start Retrofit authentication -->
+    <!-- end Retrofit authentication -->
     <!-- start Retrofit places -->
     <div class="header-col content-header">
         <h2><span>Retrofit - Listado de lugares</span></h2>
     </div>
-    <!-- endRetrofit places -->
+    <div class="row education">
+        <p>
+            Integraremos el servicio web que devuelve el listado de lugares que son mostrados en la pantalla principal de la aplicación.
+        Para ello se invocará el siguiente servicio web.
+        </p>
+        <pre><code>GET -> https://travelapp-api.herokuapp.com/api/place/all</code><br/></pre><br />
+        <p>El cual retorna un modelo de respuesta como la siguiente.</p>
+        <pre><code class="language-javascript"><script type="prism-javascript">
+[
+    {
+        "postedBy": {
+            "urlImageProfile": "https://randomuser.me/api/portraits/men/14.jpg",
+            "nameProfile": "Enrique Johnson"
+        },
+        "placeId": "5bf79980a757cc00165dca6e",
+        "createdAt": "2018-11-23T06:08:23.482Z",
+        "updatedAt": "2018-11-23T06:08:23.482Z",
+        "_id": "5bf79980a757cc00165dca6f",
+        "isFavorite": "true",
+        "urlImagePlace": "https://www.mercadoeeventos.com.br/wp-content/uploads/2017/12/shutterstock_528411958-1.jpg",
+        "latitude": 20.6274,
+        "longitude": -87.07987,
+        "likes": 78,
+        "namePlace": "Playa del carmen",
+        "description": "Es una de las playas preferidas para vacacionar en la Riviera Maya, disfrutando su  fina y blanca arena bajo aguas verde-azules.",
+        "totalComments": 14,
+        "__v": 0
+    },
+    {
+        "postedBy": {
+            "urlImageProfile": "https://randomuser.me/api/portraits/women/67.jpg",
+            "nameProfile": "Sherri Shaw"
+        },
+        "placeId": "5bf79980a757cc00165dca70",
+        "createdAt": "2018-11-23T06:08:23.482Z",
+        "updatedAt": "2018-11-23T06:08:23.482Z",
+        "_id": "5bf79980a757cc00165dca71",
+        "isFavorite": "false",
+        "urlImagePlace": "https://www.mexicodesconocido.com.mx/wp-content/uploads/2016/12/nevado-de-toluca-parque-1600.jpg",
+        "latitude": 19.17861,
+        "longitude": -99.82111,
+        "likes": 50,
+        "namePlace": "Nevado de Toluca",
+        "description": "Volcán mexicano ubicado en el Estado de México, entre los valles de Toluca y Tenango.",
+        "totalComments": 30,
+        "__v": 0
+    }
+]
+        </script></code></pre>
+        <ol>
+            <li>
+                <p>Configurando el servicio web</p>
+                <p>Agregaremos la configuración del servicio web de lugares en el archivo <span>ITravelResource.java</span></p>
+                <pre><code class="language-java"><script type="prism-java">
+    @GET("place/all")
+    Call<List<Place>> getAllPlaces();
+</script>
+</code></pre>
+            </li>
+            <li>
+                <p>Modificando el modelo</p>
+                <p>Realizaremos las siguientes modificaciones al modelo para asegurar la correcta serialización de datos.</p>
+                <pre><code class="language-java"><script type="prism-java">
+package com.qacg.travelapp.models;
+
+import com.google.gson.annotations.SerializedName;
+
+public class Place {
+
+    @SerializedName("postedBy")
+    private Profile profile;
+    @SerializedName("createdAt")
+    private String date;
+    private String urlImagePlace;
+    private boolean isFavorite;
+    private double latitude, longitude;
+    @SerializedName("likes")
+    private int totalLikes;
+    private String namePlace;
+    private String description;
+    private int totalComments;
+
+    // getters & setters
+    // ...
+}</script>
+</code></pre>
+            </li>
+            <li>
+                <p>Declaracion del handler de error(es) de conexión</p>
+                <p>Agregamos el medodo <span>void connectionUnavailable();</span> en el archivo <span>IPlacesView.java</span></p>
+                <pre><code class="language-java"><script type="prism-java">
+package com.qacg.travelapp.views;
+
+import com.qacg.travelapp.models.Place;
+
+import java.util.List;
+
+public interface IPlacesView {
+
+    void placesFound(List<Place> places);
+
+    void placesNotFound();
+
+    void connectionUnavailable();
+
+}</script>
+</code></pre>
+            </li>
+
+            <li>
+                <p>Implementamos el handler de errores en el fragmento <span>PlacesFragment.java</span></p>
+                <pre><code class="language-java"><script type="prism-java">
+    @Override
+    public void connectionUnavailable() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext(), R.style.LightDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage(R.string.conection_unavailable);
+        builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+</script>
+</code></pre>
+            </li>
+            <li>
+                <p>Invocando al servicio web</p>
+                <p>Removemos el listado de lugares "dummy" en el presentador <span>PlacesPresenter.java</span> y agregamos la invocacion
+                al servicio web que devuelve el listado de lugares.</p>
+                <pre><code class="language-java"><script type="prism-java">
+package com.qacg.travelapp.presents;
+
+import com.qacg.travelapp.api.ResourceGenerator;
+import com.qacg.travelapp.models.Place;
+import com.qacg.travelapp.views.IPlacesView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class PlacesPresenter {
+
+    private IPlacesView view;
+
+    public PlacesPresenter(IPlacesView view) {
+        this.view = view;
+    }
+
+    public void loadPlaces() {
+
+        Call<List<Place>> call = ResourceGenerator.getTravelResource().getAllPlaces();
+
+        call.enqueue(new Callback<List<Place>>() {
+            @Override
+            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null && response.body().size() > 0) {
+                        view.placesFound(response.body());
+                    } else {
+                        view.placesNotFound();
+                    }
+                } else {
+                    view.connectionUnavailable();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Place>> call, Throwable t) {
+                view.connectionUnavailable();
+            }
+        });
+    }
+}</script>
+</code></pre>
+            </li>
+            <li>Ejecutar la aplicación 🙏</li>
+        </ol>
+    </div>
+    <!-- end Retrofit places -->
+
 </section>
 <!-- footer -->
 <footer>
