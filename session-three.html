@@ -1,89 +1,433 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if lt IE 8 ]>
+<html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 8)|!(IE)]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
 
 <head>
-  <!--- basic page needs -->
-  <meta charset="utf-8">
-  <title>travelapp</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <!-- mobile specific metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <!-- css -->
-  <link rel="stylesheet" href="css/default.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/animate.css">
-  <!-- script -->
-  <script src="js/modernizr.js"></script>
-  <!-- favicons -->
-  <link rel="shortcut icon" href="images/qacg.ico">
+    <!--- basic page needs -->
+    <meta charset="utf-8">
+    <title>travelapp</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- mobile specific metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- css -->
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/prism.css" rel="stylesheet">
+    <!-- script -->
+    <script src="js/modernizr.js"></script>
+    <!-- favicons -->
+    <link rel="shortcut icon" href="images/qacg.ico">
 </head>
 
 <body>
-  <!-- preloader -->
-  <div id="preloader">
+<!-- preloader -->
+<div id="preloader">
     <div class="loader"></div>
-  </div>
-  <!--preloader end-->
-  <!-- header section -->
-  <header id="home">
+</div>
+<!--preloader end-->
+<!-- header section -->
+<header id="home">
     <nav id="m-nav">
-      <a class="mobile-btn" href="#m-nav" title="Show navigation">Show navigation</a>
-      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
-      <ul id="nav" class="nav">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="index.html#agenda">Temario</a></li>
-        <li><a href="session-one.html">Sesión # 1</a></li>
-        <li><a href="session-two.html">Sesión # 2</a></li>
-        <li class="current"><a href="#">Sesión # 3</a></li>
-        <li><a href="session-four.html">Sesión # 4</a></li>
-      </ul>
+        <a class="mobile-btn" href="#m-nav" title="Show navigation">Show navigation</a>
+        <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+        <ul id="nav" class="nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#agenda">Temario</a></li>
+            <li><a href="session-one.html">Sesión # 1</a></li>
+            <li><a href="session-two.html">Sesión # 2</a></li>
+            <li class="current"><a class="smoothscroll" href="#">Sesión # 3</a></li>
+            <li><a href="session-four.html">Sesión # 4</a></li>
+        </ul>
     </nav>
     <div class="row banner">
-      <div class="banner-text">
-        <h1 class="responsive-headline wow zoomIn">Integración de librerias</h1>
-        <h3 class="wow fadeInUp">
-            Sesión # 3
-            <br>
-            <br>
-            Quality & Knowledge on IT Services
-            <br>
-            <span style="font-size: .7em;">( contenido disponible el sábado 24 de Noviembre del 2018)</span>
-        </h3>
-      </div>
+        <div class="banner-text">
+            <h1 class="responsive-headline wow zoomIn">Integración de librerías</h1>
+            <h3 class="wow fadeInUp">
+                Sesión # 3
+                <br>
+                <br>
+                Quality & Knowledge on IT Services
+                <br>
+                <span style="font-size: .7em;">( contenido disponible el sábado 24 de Noviembre del 2018)</span>
+            </h3>
+        </div>
     </div>
     <p class="scrolldown">
-      <a class="smoothscroll" href="#about"><i class="fa fa-angle-double-down"></i></a>
+        <a class="smoothscroll" href="#about"><i class="fa fa-angle-double-down"></i></a>
     </p>
     <div class="header-overlay"></div>
-  </header>
-  <!-- header end -->
-  <!-- footer -->
-  <footer>
-    <div class="row wow fadeInUp" style="color: white;">
-      <div class="twelve columns">
-        <span>Quality & Knowledge on IT Services | 2018 | Ciudad de México</span>
-        <ul class="social-links">
-          <li><i class="fab fa-android"></i></li>
-        </ul>
-        Alejandro Salazar | Gerardo Epitacio | Víctor Hernández
-      </div>
-      <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="fa fa-chevron-up"></i></a></div>
+</header>
+<!-- header end -->
+<!-- section start -->
+<section id="agenda">
+    <!-- Start Main libraries -->
+    <h1 class="section-title wow fadeInDown">Librerías Android</h1>
+    <div class="row education">
+        <p>A continuación se listan las librerías, que comunmente se utilizan durante el desarrollo de una aplicación
+            Android.<br/>
+            <span><a href="https://square.github.io/retrofit/">Retrofit</a> - </span>Se describe a si mismo de la siguiente manera,
+            "Convierte una REST API a una interfaz Java", permite a travéz de anotaciones agregar un cuerpo en la petición,
+            manipular los parametros de la URL y encabezados de la petición.<br/>
+            <span><a href="https://github.com/google/gson">Gson</a> - </span>Se utiliza para la serialización y
+            deserializacion de objetos Java a JSON y al revés ( de JSON a objetos Java).<br/>
+            <span><a href="https://bumptech.github.io/glide/">Glide</a> - </span>Librería utilizada para descargar imágenes desde una URL.<br/>
+            <span><a href="https://realm.io/docs/java/latest">Realm</a> - </span>Es un motor de bases de datos local utilizada en Android.<br/>
+            <span><a href="https://developers.google.com/maps/documentation/android-sdk/intro"></a>Google Maps - </span>Integración con mapas de Google.<br/>
+        </p>
     </div>
-  </footer>
-  <!-- footer end-->
-  <!-- java script -->
-  <script src="js/jquery-2.1.1.min.js"></script>
-  <script src="js/waypoints.js"></script>
-  <script src="js/jquery.fittext.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/jquery.nicescroll.min.js"></script>
-  <script src="js/script.js"></script>
-</body>
+    <!-- start libraries types -->
+    <h1 class="section-title wow fadeInDown">Tipos de librerías</h1>
+    <div class="row education">
+        <p>Podemos encontrar dos formas de agregar librerías a nuestra aplicación:<br/>
+            <span>Localmente - </span>Los archivos de la libreria deben ser
+            descargados para poder incluirlas en la aplicación.<br/>
+            <span>Remotas - </span>Se agregan como una dependencia de Gradle para
+            que al momento de realizar la sincronizacion, Gradle descargue las dependencias correspondientes en el proyecto.<br/>
+        </p>
+    </div>
+    <!-- end libraries types -->
+    <!-- start Retrofit authentication -->
+    <div class="header-col content-header">
+        <h2><span>Retrofit y Gson - Autenticación de usuarios</span></h2>
+    </div>
+    <div class="row education">
+        <p>
+            Vamos a integrar las librerías Retrofit y Gson para poder sustituir la autenticación "dummy" por
+            una autenticación remota.<br />
+            Para esto, será necesario consumir el siguiente servicio web: <br />
+            <pre><code>https://travelapp-api.herokuapp.com/api/user/autenticate</code><br/></pre><br />
+            El cual recibe y devuelve los siguientes datos en formato JSON a través de una peticion POST.
+        </p>
+        <pre><code class="language-javascript">
+            <script type="prism-javascript">
+// Cuerpo de la petición
+{
+  "username": "USER",
+  "password": "PASSWORD"
+}
 
+// Respuesta
+{
+    "_id": "ID_USUARIO",
+    "username": "USER",
+    "password": "PASSWORD",
+    "role": "ROLE"
+}</script>
+        </code>
+        </pre>
+        <br />
+        <ol>
+            <li>
+                <span><p>Configurando Retrofit</p></span>
+                <ol>
+                    <li>
+                        <p>Agregar las siguientes dependencias en el archivo Gradle de <span>la aplicación.</span></p>
+                        <pre><code>implementation 'com.squareup.retrofit2:retrofit:2.5.0'</code></pre>
+                        <pre><code>implementation 'com.squareup.retrofit2:converter-gson:2.5.0'</code><br/></pre><br />
+                        
+                        <div class="content-picture-container">
+                            <img class="content-picture wow zoomIn" src="images/session-three/gradle-dependencies.png" alt="new project" />
+                        </div>
+                    </li>
+                    <li>
+                        <p><span>Sincronizar el script gradle para descargar las dependencias agregadas.</span></p>
+                    </li>
+                    <li>
+                        <p>
+                            Crear el paquete <span>api</span> dentro del paquete <span>travelapp</span>.
+                        </p>
+                        <div class="content-picture-container">
+                            <img class="content-picture wow zoomIn" src="images/session-three/api-package.png " alt="new project" />
+                        </div>
+                    </li>
+                    <li>
+                        <p>Archivo de servicios</p>
+                        <p>Crear el archivo <span>ITravelResource.java</span> en el paquete <span>api</span>, esta será la interfaz donde se van a declarar los servicios web.</p>
+                    </li>
+                    <li>
+                        <p>Inicializacion de Retrofit.</p>
+                        <p>Crearemos el objeto <span>retrofit</span>, utilizando el patron singleton, para ello, creamos el archivo <span>ResourceGenerator.java</span> en el paquete <span>api</span> y agregar el contenido de configuración.</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.api;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class ResourceGenerator {
+
+    /**
+     * Url base de los servicios de la aplicación.
+     */
+    private static final String BASE_URL = "http://192.168.0.98:3000/api/";
+
+    private static ITravelResource travelResource;
+
+    private ResourceGenerator() {}
+
+    static {
+        setupRetrofit();
+    }
+
+    private static void setupRetrofit() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL).build();
+        travelResource = retrofit.create(ITravelResource.class);
+    }
+
+    public static ITravelResource getTravelResource() {
+        return travelResource;
+    }
+}</script>
+                    </code>
+                    </pre>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <span><p>Integrando la autenticación de usuario</p></span>
+                <ol>
+                    <li>
+                        <p>Configurando nuestro servicio web de autenticación</p>
+                        <p>Agregamos el método <span>authenticateUser</span> en la interfaz <span>ITravelResource.java</span>, nuestro archivo quedará de la siguiente forma:</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.api;
+
+import com.qacg.travelapp.models.User;
+
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
+public interface ITravelResource {
+
+    @POST("user/autenticate")
+    Call<User> authenticateUser(@Body Object body);
+
+}</script>
+                    </code>
+                    </pre>
+                    </li>
+                    <li>
+                        <p>Permisos de acceso a internet</p>
+                        <p>Agregamos el permiso para acceso a internet de la aplicación en el archivo <span>AndroidManifest.xml</span>:</p>
+
+<pre><code class="language-java"><script type="prism-java"><uses-permission android:name="android.permission.INTERNET"/></script></code></pre>
+
+                        <div class="content-picture-container">
+                            <img class="content-picture wow zoomIn"  src="images/session-three/internet-permissions.png" alt="new project" />
+                        </div>
+                    </li>
+                    <li>
+                        <p>Preparando nuestro modelo de Peticion/Respuesta</p>
+                        <p>Realizaremos unas pequeñas modificaciones a nuestra clase <span>User.java</span>, para poder
+                            serializar y deserializar correctamente los datos que se envian y reciben del servidor.</p>
+                        <ol>
+                            <li><p>Agregamos una anotación para la serializacion de objetos para el campo <span>userName</span>, esto
+                            nos permite recibir y enviar correctamente el nombre del campo <span>username</span> al momento de
+                            serializar/deserializar la clase <span>User.java</span></p></li>
+                            <li><p>Agregamos un constructor que recibe como argumentos el usuario y password.</p>
+                                <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.models;
+
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * Modelo que representa al usuario de la aplicación.
+ */
+public class User {
+
+    @SerializedName("username")
+    private String userName;
+    private String password;
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}</script></code></pre>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li><p>Agregamos métodos para manejo de error(es) de red.</p>
+                        <ol>
+                            <li>
+                                <p>Agregamos el método <span>connectionUnavailable</span> en el archivo <span>ILoginView.java</span>.</p>
+                                <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.views;
+
+import com.qacg.travelapp.models.User;
+
+/**
+ * Vista que define el comportamiento de la vista.
+ */
+public interface ILoginView {
+    void userFound(User user);
+
+    void userNotFound();
+
+    void emptyFields();
+
+    void connectionUnavailable();
+}</script></code></pre>
+                            </li>
+                            <li>
+                                <p>Implementamos el método <span>connectionUnavailable</span> en la clase <span>LoginActivity.java</span>.</p>
+                                <pre><code class="language-java">
+                        <script type="prism-java">
+@Override
+public void connectionUnavailable() {
+    final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LightDialogTheme);
+    builder.setTitle(R.string.app_name);
+    builder.setMessage(R.string.conection_unavailable);
+    builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int id) {
+            dialog.dismiss();
+        }
+    });
+    AlertDialog dialog = builder.create();
+    dialog.show();
+}</script></code></pre>
+                            </li>
+                            <li><p>Agregamos el siguiente string en el archivo de strings.</p>
+                                <p>strings.xml</p>
+                                <pre><code class="language-java"><script type="prism-java">
+<string name="conection_unavailable">Se presentaron algunos problemas al intentar conectarse con los servicios.</string>
+</script></code></pre>
+
+                                <p>strings.xml (en)</p>
+                                <pre><code class="language-java"><script type="prism-java">
+<string name="conection_unavailable">There were some problems when trying to connect with services.</string>
+</script></code></pre>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <p>Invocación del servicio web</p>
+                        <p>Modificaremos a nuestro presentador para consumir el servicio web de autenticación.</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.presents;
+
+import com.qacg.travelapp.api.ResourceGenerator;
+import com.qacg.travelapp.models.User;
+import com.qacg.travelapp.views.ILoginView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class LoginPresenter {
+
+    private ILoginView view;
+
+    public LoginPresenter(ILoginView view) {
+        this.view = view;
+    }
+
+    public void validateUser(final String username, String password) {
+        if (username.length() == 0 || password.length() == 0) {
+            view.emptyFields();
+        } else {
+            // Creamos nuestro objeto Call
+            Call<User> call = ResourceGenerator.getTravelResource().authenticateUser(new User(username, password));
+            // Realizamos la invocación al servicio web en una llamada asincrona.
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+                        view.userFound(response.body());
+                    } else {
+                        controlErrors(response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    if (!call.isCanceled()) {
+                        view.connectionUnavailable();
+                    }
+                }
+            });
+        }
+    }
+
+    // Manejamos los codigos de error retornados por el servidor.
+    private void controlErrors(int code) {
+        if (code == 401) {
+            view.userNotFound();
+        } else {
+            view.connectionUnavailable();
+        }
+    }
+}
+
+                        </script></code></pre>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+    <!-- start Retrofit authentication -->
+    <!-- start Retrofit places -->
+    <div class="header-col content-header">
+        <h2><span>Retrofit - Listado de lugares</span></h2>
+    </div>
+    <!-- endRetrofit places -->
+</section>
+<!-- footer -->
+<footer>
+    <div class="row wow fadeInUp" style="color: white;">
+        <div class="twelve columns">
+            <span>Quality & Knowledge on IT Services | 2018 | Ciudad de México</span>
+            <ul class="social-links">
+                <li><i class="fab fa-android"></i></li>
+            </ul>
+            Alejandro Salazar | Gerardo Epitacio | Víctor Hernández
+        </div>
+        <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="fa fa-chevron-up"></i></a>
+        </div>
+    </div>
+</footer>
+<!-- footer end-->
+<!-- java script -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/waypoints.js"></script>
+<script src="js/jquery.fittext.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/prism.js"></script>
+<script src="js/script.js"></script>
+</body>
 </html>
