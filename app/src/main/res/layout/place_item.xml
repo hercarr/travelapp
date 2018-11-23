@@ -9,13 +9,14 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:id="@+id/imageProfile"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/profile" />
+            android:src="@drawable/profile"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/nameProfile"
@@ -26,6 +27,7 @@
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@id/imageProfile"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Scarlett Johansson" />
 
         <TextView
@@ -45,9 +47,10 @@
 
     <ImageView
         android:id="@+id/imagePlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
         android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/image"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         validateSession();
         /* the data is deleted in order to execute all flows when the app runs  */
-        SharedPreferenceUtils.getInstance(this).clear();
+//        SharedPreferenceUtils.getInstance(this).clear();
     }
 
     private void validateSession() {

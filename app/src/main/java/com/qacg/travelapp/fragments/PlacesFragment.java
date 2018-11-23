@@ -45,7 +45,7 @@ public class PlacesFragment extends Fragment implements IPlacesView {
         places= view.findViewById(R.id.recyclerViewPlaces);
         places.setLayoutManager(new LinearLayoutManager(getContext()));
         places.setHasFixedSize(true);
-        adapter= new PlaceAdapter();
+        adapter= new PlaceAdapter(PlacesFragment.this.getContext());
         places.setAdapter(adapter);
         presenter = new PlacesPresenter(this);
         presenter.loadPlaces();
