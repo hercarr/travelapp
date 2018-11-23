@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,7 @@ public class PlacesFragment extends Fragment implements IPlacesView {
     private RecyclerView places;
     private PlaceAdapter adapter;
     private PlacesPresenter presenter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public static PlacesFragment getInstance() {
         return new PlacesFragment();
@@ -43,17 +45,31 @@ public class PlacesFragment extends Fragment implements IPlacesView {
 
     private void init(View view){
         places= view.findViewById(R.id.recyclerViewPlaces);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        presenter.loadPlaces();
+                    }
+                }
+        );
         places.setLayoutManager(new LinearLayoutManager(getContext()));
         places.setHasFixedSize(true);
         adapter= new PlaceAdapter(PlacesFragment.this.getContext());
         places.setAdapter(adapter);
         presenter = new PlacesPresenter(this);
+
+        swipeRefreshLayout.setRefreshing(true);
         presenter.loadPlaces();
     }
 
     @Override
     public void placesFound(List<Place> places) {
         adapter.addList(places);
+        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
