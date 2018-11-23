@@ -18,4 +18,5 @@
     <string name="conection_unavailable">Se presentaron algunos problemas al intentar conectarse con los servicios.</string>
     <!-- places screen -->
     <string name="not_places_found_msg">Lista de lugares vacia.</string>
+    <string name="comments_placeholder">%1s comentarios</string>
 </resources>

@@ -7,5 +7,9 @@ import java.util.List;
 public interface IPlacesView {
 
     void placesFound(List<Place> places);
+
     void placesNotFound();
+
+    void connectionUnavailable();
+
 }

@@ -1,11 +1,17 @@
 package com.qacg.travelapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Place {
+
+    @SerializedName("postedBy")
     private Profile profile;
+    @SerializedName("createdAt")
     private String date;
     private String urlImagePlace;
     private boolean isFavorite;
     private double latitude, longitude;
+    @SerializedName("likes")
     private int totalLikes;
     private String namePlace;
     private String description;
