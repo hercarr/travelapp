@@ -586,7 +586,7 @@ public class PlacesPresenter {
 </code></pre>
             </li>
             <li>
-                <p>Ejecutar la aplicación 🙏</p>
+                <p>Ejecutar la aplicación</p>
                 <p>Al ejecutar la aplicación, deberán tantos lugares como los devueltos por el servicio web.</p>
                 <div class="content-picture-container">
                     <img class="content-picture wow zoomIn" width="512px" src="images/session-three/get-all-places.png" alt="new project" />
@@ -651,11 +651,9 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         mContext = context;
     }
 
+    // Actualizamos el metodo para que solo muestre los elementos recibidos desde el servicio web.
     public void addList(List<Place> places) {
-        if (this.places != null)
-            this.places.addAll(places);
-        else if (places != null && !places.isEmpty())
-            this.places = places;
+        this.places = places;
         notifyDataSetChanged();
     }
 
@@ -906,7 +904,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 </android.support.constraint.ConstraintLayout></script></code></pre>
             </li>
             <li>
-                <p>Ejecutar la aplicación 🙏</p>
+                <p>Ejecutar la aplicación</p>
                 <p>Al ejecutar la aplicación, las fotos de perfil del usuario y la imagen del post deberían mostrarse correctamente.</p>
                 <div class="content-picture-container">
                     <img class="content-picture wow zoomIn" width="512px" src="images/session-three/glide-integration.png" alt="new project" />
@@ -985,7 +983,7 @@ implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'</code></pre>
     }</script></code></pre>
             </li>
             <li>
-                <p>Ejecutar la aplicación 🙏</p>
+                <p>Ejecutar la aplicación</p>
                 <p>Al ejecutar la aplicación, se deben de mostrar los siguientes cambios:</p>
                 <ol>
                     <li>La fecha de publicación formateada adecuadamente</li>
@@ -993,12 +991,84 @@ implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'</code></pre>
                     <li>Se agrega el string <span>me gusta</span> adelante de la cantidad de likes</li>
                 </ol>
                 <div class="content-picture-container">
-                    <img class="content-picture wow zoomIn" width="512px" src="images/session-three/glide-integration.png" alt="new project" />
+                    <img class="content-picture wow zoomIn" width="512px" src="images/session-three/timeformating-extras.png" alt="new project" />
                 </div>
+            </li>
+
+            <li>
+                <p>Agregando el elemento pull to refresh.</p>
+                <ol>
+                    <p>
+                        El elemento pull to refresh, nos permite escuchar en nuestra actividad o fragmento cuando el usuario
+                        realiza un gesto de arrastre hacia abajo (pull) dentro de un listado <span>ListView o RecyclerView</span>.
+                    </p>
+                    <li>
+                        <p>Actualizamos nuestro archivo <span>fragment_places.xml</span> con el siguiente contenido.</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PlacesFragment">
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewPlaces"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout></script></code></pre>
+                    </li>
+                    <li>
+                        <p>Actualizamos el método <span>init()</span> y el metodo <span>placesFound()</span> del fragmento <span>PlacesFragment.java</span></p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+    private void init(View view){
+        places= view.findViewById(R.id.recyclerViewPlaces);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        presenter.loadPlaces();
+                    }
+                }
+        );
+        places.setLayoutManager(new LinearLayoutManager(getContext()));
+        places.setHasFixedSize(true);
+        adapter= new PlaceAdapter(PlacesFragment.this.getContext());
+        places.setAdapter(adapter);
+        presenter = new PlacesPresenter(this);
+
+        swipeRefreshLayout.setRefreshing(true);
+        presenter.loadPlaces();
+    }
+
+    @Override
+    public void placesFound(List<Place> places) {
+        adapter.addList(places);
+        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Ejecutar la aplicación</p>
+                        <p>Al ejecutar la aplicación, esta permite actualizar el listado de lugares cuando el usuario
+                            realiza el gesto Swipe.</p>
+                        <div class="content-picture-container">
+                            <img class="content-picture wow zoomIn" width="512px" src="images/session-three/swipe.gif" alt="new project" />
+                        </div>
+                    </li>
+                </ol>
             </li>
         </ol>
     </div>
-    <!-- end JodaTime & Prettytime-->
 </section>
 <!-- footer -->
 <footer>
