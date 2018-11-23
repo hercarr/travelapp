@@ -14,6 +14,8 @@
     <string name="forgotten_password_lbl">¿Olvidaste tu contraseña?</string>
     <string name="empty_credentials_msg">Por favor, proporcione sus credenciales de acceso para iniciar sesión.</string>
     <string name="not_user_found_msg">Las credenciales de accesos proporcionadas son incorrectas. Intente nuevamente.</string>
+    <!-- connection errors -->
+    <string name="conection_unavailable">Se presentaron algunos problemas al intentar conectarse con los servicios.</string>
     <!-- places screen -->
     <string name="not_places_found_msg">Lista de lugares vacia.</string>
 </resources>

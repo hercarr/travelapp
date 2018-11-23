@@ -83,4 +83,19 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    @Override
+    public void connectionUnavailable() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LightDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage(R.string.conection_unavailable);
+        builder.setPositiveButton(R.string.accept_bnt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }

@@ -11,4 +11,6 @@ public interface ILoginView {
     void userNotFound();
 
     void emptyFields();
+
+    void connectionUnavailable();
 }

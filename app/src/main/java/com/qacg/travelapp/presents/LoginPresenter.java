@@ -1,7 +1,12 @@
 package com.qacg.travelapp.presents;
 
+import com.qacg.travelapp.api.ResourceGenerator;
 import com.qacg.travelapp.models.User;
 import com.qacg.travelapp.views.ILoginView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginPresenter {
 
@@ -11,16 +16,36 @@ public class LoginPresenter {
         this.view = view;
     }
 
-    public void validateUser(String username, String password) {
+    public void validateUser(final String username, String password) {
         if (username.length() == 0 || password.length() == 0) {
             view.emptyFields();
-        } else if (username.equals("travelapp") && password.equals("secret")) {
-            User user = new User();
-            user.setUserName(username);
-            user.setPassword(password);
-            view.userFound(user);
         } else {
+            Call<User> call = ResourceGenerator.getTravelResource().authenticateUser(new User(username, password));
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+                        view.userFound(response.body());
+                    } else {
+                        controlErrors(response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    if (!call.isCanceled()) {
+                        view.connectionUnavailable();
+                    }
+                }
+            });
+        }
+    }
+
+    private void controlErrors(int code) {
+        if (code == 401) {
             view.userNotFound();
+        } else {
+            view.connectionUnavailable();
         }
     }
 }

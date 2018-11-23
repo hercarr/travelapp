@@ -14,6 +14,8 @@
     <string name="forgotten_password_lbl">Forgot your password?</string>
     <string name="empty_credentials_msg">Please, you need to enter your username and password.</string>
     <string name="not_user_found_msg">Username and password are incorrect. Try again.</string>
+    <!-- connection errors -->
+    <string name="conection_unavailable">There were some problems when trying to connect with services.</string>
     <!-- places screen -->
     <string name="not_places_found_msg">No places found.</string>
 </resources>
