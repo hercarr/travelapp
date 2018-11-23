@@ -585,11 +585,13 @@ public class PlacesPresenter {
 }</script>
 </code></pre>
             </li>
-            <p>Ejecutar la aplicación 🙏</p>
-            <p>Al ejecutar la aplicación, deberán tantos lugares como los devueltos por el servicio web.</p>
-            <div class="content-picture-container">
-                <img class="content-picture wow zoomIn" width="512px" src="images/session-three/get-all-places.png" alt="new project" />
-            </div>
+            <li>
+                <p>Ejecutar la aplicación 🙏</p>
+                <p>Al ejecutar la aplicación, deberán tantos lugares como los devueltos por el servicio web.</p>
+                <div class="content-picture-container">
+                    <img class="content-picture wow zoomIn" width="512px" src="images/session-three/get-all-places.png" alt="new project" />
+                </div>
+            </li>
         </ol>
     </div>
     <!-- end Retrofit places -->
@@ -605,12 +607,26 @@ public class PlacesPresenter {
         <ol>
             <li>
                 <p>Dependencias</p>
-                <p>Agregar la siguiente dependencia en el archivo Gradle de <span>la aplicación.</span></p>
-                <pre><code>implementation ("com.github.bumptech.glide:glide:4.8.0") {
+                <ol>
+                    <li>
+                        <p>Agregar la siguiente dependencia en el archivo Gradle de <span>la aplicación.</span></p>
+                        <pre><code>implementation ("com.github.bumptech.glide:glide:4.8.0") {
         // Excluimos la libreria de soporte que provee la libreria
         // Ya que estamos implementando la version mas reciente.
         exclude group: "com.android.support"
     }</code></pre>
+                    </li>
+                    <li>
+                        <p>Agregar las siguientes repositorios en el archivo Gradle <span>del proyecto</span></p>
+                        <pre><code>
+mavenCentral()
+maven { url 'https://maven.google.com' }</code></pre>
+                        <div class="content-picture-container">
+                            <img class="content-picture wow zoomIn" width="512px" src="images/session-three/gradle-dependencies-project.png" alt="new project" />
+                        </div>
+                    </li>
+                    <li>Sincronizamos para descargar las dependencias.</li>
+                </ol>
             </li>
 
             <li>
@@ -900,7 +916,88 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     </div>
     <!-- end Glide -->
     <!-- start JodaTime & Prettytime-->
+    <div class="header-col content-header">
+        <h2><span>JodaTime & Prettytime - Finalizando la integración.</span></h2>
+    </div>
+    <div class="row education">
+        <p>
+            Integraremos la librería JodaTime y Prettytime para darle formato a la fecha de creación del post.
+        </p>
+        <p>Realizaremos también ajustes menores al item del listado.</p>
+        <ol>
+            <li>
+                <p>Dependencias</p>
+                <ol>
+                    <li>
+                        <p>Agregar las siguientes dependencias en el archivo Gradle de <span>la aplicación.</span></p>
+                        <pre><code>
+implementation 'net.danlew:android.joda:2.10.1'
+implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'</code></pre>
+                    </li>
+                    <li>
+                        <p>Sincronizar los scripts Gradle del proyecto.</p>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <p>Agregamos los siguientes recursos en el archivo de strings.</p>
+                <p>strings.xml</p>
+                <pre><code class="language-java"><script type="prism-java">
+<string name="comments_placeholder">%1s comentarios</string>
+<string name="likes_placeholder">%1s me gusta</string>
+</script></code></pre>
+                <p>strings.xml (en)</p>
+                <pre><code class="language-java"><script type="prism-java">
+<string name="comments_placeholder">%1s comments</string>
+<string name="likes_placeholder">%1s likes</string>
+</script></code></pre>
+            </li>
+            <li>
+                <p>Realizamos las siguientes modificaciones al archivo <span>PlaceAdapter.java</span></p>
+                <pre><code class="language-java">
+                        <script type="prism-java">
+    // Clase: PlaceAdapter
+    // Agregamos un metodo para formatear la fecha
+    private String parseToElapsedTime(String stringDatetime) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        return new PrettyTime().format( DateTime.parse(stringDatetime, formatter).toDate() );
+    }
 
+    // Clase: PlaceViewHolder
+    // Actualizamos el metodo dataBinding()
+    void dataBinding(Place place) {
+            Glide.with(mContext)
+                    .load(place.getProfile().getUrlImageProfile())
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(imageProfile);
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(45));
+            Glide.with(mContext)
+                    .load(place.getUrlImagePlace())
+                    .apply(requestOptions)
+                    .into(imagePlace);
+            nameProfile.setText(place.getProfile().getNameProfile());
+            date.setText(parseToElapsedTime(place.getDate()));
+            totalLikes.setText(String.valueOf(place.getTotalLikes()));
+            namePlace.setText(place.getNamePlace());
+            description.setText(place.getDescription());
+            numberComments.setText(mContext.getResources().getString(R.string.comments_placeholder, String.valueOf(place.getTotalComments())));
+    }</script></code></pre>
+            </li>
+            <li>
+                <p>Ejecutar la aplicación 🙏</p>
+                <p>Al ejecutar la aplicación, se deben de mostrar los siguientes cambios:</p>
+                <ol>
+                    <li>La fecha de publicación formateada adecuadamente</li>
+                    <li>Se agrega el string <span>comentarios</span> adelante de la cantidad de comentarios</li>
+                    <li>Se agrega el string <span>me gusta</span> adelante de la cantidad de likes</li>
+                </ol>
+                <div class="content-picture-container">
+                    <img class="content-picture wow zoomIn" width="512px" src="images/session-three/glide-integration.png" alt="new project" />
+                </div>
+            </li>
+        </ol>
+    </div>
     <!-- end JodaTime & Prettytime-->
 </section>
 <!-- footer -->
