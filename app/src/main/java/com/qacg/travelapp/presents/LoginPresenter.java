@@ -17,13 +17,16 @@ public class LoginPresenter {
     }
 
     public void validateUser(final String username, String password) {
+        view.showLoader();
         if (username.length() == 0 || password.length() == 0) {
+            view.hideLoader();
             view.emptyFields();
         } else {
             Call<User> call = ResourceGenerator.getTravelResource().authenticateUser(new User(username, password));
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
+                    view.hideLoader();
                     if (response.isSuccessful()) {
                         view.userFound(response.body());
                     } else {
@@ -33,6 +36,7 @@ public class LoginPresenter {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
+                    view.hideLoader();
                     if (!call.isCanceled()) {
                         view.connectionUnavailable();
                     }

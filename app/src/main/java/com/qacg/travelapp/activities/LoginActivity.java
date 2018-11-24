@@ -1,10 +1,11 @@
 package com.qacg.travelapp.activities;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     private TextView txtUsername;
     private TextView txtPassword;
     private Button btnLogin;
+    private ProgressDialog progressbarDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 presenter.validateUser(txtUsername.getText().toString(), txtPassword.getText().toString());
             }
         });
+
+        progressbarDialog = new ProgressDialog(this);
+        progressbarDialog.setCancelable(false);
+        progressbarDialog.setIndeterminate(true);
+        progressbarDialog.setMessage(getString(R.string.starting_session));
+
     }
 
     @Override
@@ -96,6 +104,20 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void showLoader() {
+        if (progressbarDialog != null && !progressbarDialog.isShowing()) {
+            progressbarDialog.show();
+        }
+    }
+
+    @Override
+    public void hideLoader() {
+        if (progressbarDialog != null && progressbarDialog.isShowing()) {
+            progressbarDialog.hide();
+        }
     }
 
 }

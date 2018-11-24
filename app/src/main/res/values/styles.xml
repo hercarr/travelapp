@@ -25,6 +25,9 @@
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@color/statusBar</item>
         <item name="windowActionBarOverlay">true</item>
+        <!-- Estilo para los dialogos del tema -->
+        <item name="android:alertDialogTheme">@style/LightDialogTheme</item>
+        <item name="alertDialogTheme">@style/LightDialogTheme</item>
     </style>
 
 </resources>

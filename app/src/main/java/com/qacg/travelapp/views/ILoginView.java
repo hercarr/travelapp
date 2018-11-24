@@ -6,6 +6,7 @@ import com.qacg.travelapp.models.User;
  * Vista que define el comportamiento de la vista.
  */
 public interface ILoginView {
+
     void userFound(User user);
 
     void userNotFound();
@@ -13,4 +14,9 @@ public interface ILoginView {
     void emptyFields();
 
     void connectionUnavailable();
+
+    void showLoader();
+
+    void hideLoader();
+
 }
