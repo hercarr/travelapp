@@ -82,7 +82,7 @@
             <span><a href="https://github.com/dlew/joda-time-android">JodaTime</a> - </span>Libreria que facilita enormemente el manejo de fechas como el parseo, formato, etc.<br/>
             <span><a href="https://github.com/ocpsoft/prettytime">Prettytime</a> - </span>Formato de fechas para Java con un formato de redes sociales.<br/>
             <span><a href="https://realm.io/docs/java/latest">Realm</a> - </span>Es un motor de bases de datos local utilizada en Android.<br/>
-            <span><a href="https://developers.google.com/maps/documentation/android-sdk/intro"></a>Google Maps - </span>Integración con mapas de Google.<br/>
+            <span><a href="https://developers.google.com/maps/documentation/android-sdk/intro">Google Maps</a> - </span>Integración con mapas de Google.<br/>
         </p>
     </div>
     <!-- start libraries types -->
@@ -134,7 +134,7 @@
                         <p>Agregar las siguientes dependencias en el archivo Gradle de <span>la aplicación.</span></p>
                         <pre><code>implementation 'com.squareup.retrofit2:retrofit:2.5.0'</code></pre>
                         <pre><code>implementation 'com.squareup.retrofit2:converter-gson:2.5.0'</code><br/></pre><br />
-                        
+
                         <div class="content-picture-container">
                             <img class="content-picture wow zoomIn" src="images/session-three/gradle-dependencies.png" alt="new project" />
                         </div>
@@ -392,9 +392,143 @@ public class LoginPresenter {
             view.connectionUnavailable();
         }
     }
-}
+}</script></code></pre>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <span><p>Agregando un loader</p></span>
+                <p>Debido a que generalmente el consumo de servicios web se llevan a cabo de manera
+                <span>asincrona</span>, Android provee ciertos componentes que permiten indicar al usuario
+                que se esta realizando cierta tarea en segundo plano, estos componentes son comunmente conocidos como <span>Loaders</span>.</p>
+                <p>Dentro de los loaders mas utilizados se encuentran el
+                    <span><a href="https://developer.android.com/reference/android/app/ProgressDialog">ProgressDialog</a></span>
+                    y el
+                    <span><a href="https://developer.android.com/reference/android/widget/ProgressBar">ProgressBar</a></span>.</p>
+                <p>Para efectos prácticos integraremos un <span>ProgressDialog</span> que será mostrado durante la llamada del servicio web de autenticación.</p>
+                <ol>
+                    <li>Agregamos los siguientes metodos en la interfaz <span>ILoginView.java</span></li>
+                    <pre><code class="language-java">
+                        <script type="prism-java">
+    void showLoader();
 
+    void hideLoader();
                         </script></code></pre>
+                    <li>
+                        <p>Agregamos el ProgressDialog en la actividad de login e implementamos los metodos
+                            <span>showLoader</span> y <span>hideLoader</span>.</p>
+                        <p>LoginActivity.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+// Definimos una variable miembro.
+private ProgressDialog progressbarDialog;
+
+private void init() {
+        presenter = new LoginPresenter(this);
+
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
+
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.validateUser(txtUsername.getText().toString(), txtPassword.getText().toString());
+            }
+        });
+
+        // Inicializamos nuestro loader
+        progressbarDialog = new ProgressDialog(this);
+        progressbarDialog.setCancelable(false);
+        progressbarDialog.setIndeterminate(true);
+        progressbarDialog.setMessage(getString(R.string.starting_session));
+    }
+
+
+    @Override
+    public void showLoader() {
+        if (progressbarDialog != null && !progressbarDialog.isShowing()) {
+            progressbarDialog.show();
+        }
+    }
+
+    @Override
+    public void hideLoader() {
+        if (progressbarDialog != null && progressbarDialog.isShowing()) {
+            progressbarDialog.hide();
+        }
+    }</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Agregamos los siguientes recursos en los archivos de string.</p>
+                        <p>strings.xml</p>
+                        <pre><code class="language-java"><script type="prism-java">
+<string name="starting_session">Iniciando sesión</string>
+</script></code></pre>
+
+                        <p>strings.xml (en)</p>
+                        <pre><code class="language-java"><script type="prism-java">
+<string name="starting_session">Starting session</string>
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Agregamos estilos</p>
+                        <p>En el archivo <span>styles.xml</span> actualizamos el estilo <span>TransparentAppTheme</span></p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+<style name="TransparentAppTheme" parent="AppTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/statusBar</item>
+        <item name="windowActionBarOverlay">true</item>
+        <!-- Estilos a los dialogos -->
+        <item name="android:alertDialogTheme">@style/LightDialogTheme</item>
+        <item name="alertDialogTheme">@style/LightDialogTheme</item>
+    </style></script></code></pre>
+                    </li>
+                    <li>
+                        <p>Agregamos interaccion del loader desde el presentador</p>
+                        <p>Actualizamos el metodo <span>validateUser</span> del archivo <span>LoginPresenter.java</span></p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+    public void validateUser(final String username, String password) {
+        // Mostramos el loader antes de consumir el servicio web.
+        view.showLoader();
+        if (username.length() == 0 || password.length() == 0) {
+            view.hideLoader();
+            view.emptyFields();
+        } else {
+            Call<User> call = ResourceGenerator.getTravelResource().authenticateUser(new User(username, password));
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    // Ocultamos el loader el recibir una respuesta desde el servidor.
+                    view.hideLoader();
+                    if (response.isSuccessful()) {
+                        view.userFound(response.body());
+                    } else {
+                        controlErrors(response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    // Ocultamos el loader si se presenta algun error.
+                    view.hideLoader();
+                    if (!call.isCanceled()) {
+                        view.connectionUnavailable();
+                    }
+                }
+            });
+        }
+    }</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Ejecutar la aplicación</p>
+                        <p>Al introducir las credenciales de usuario y oprimir el botón <span>ENTRAR</span> se deberá mostrar un loader mientras se validan las credenciales del usuario.</p>
+                        <p><span>Nota:</span> Si la peticion se realiza muy rapido es probable que el loader no se alcanze a visualizar y la aplicación mostrará en seguida la pantalla del listado de lugares.</p>
+                        <div class="content-picture-container">
+                            <img class="content-picture wow zoomIn" width="512px" src="images/session-three/iniciando-sesion.png" alt="new project" />
+                        </div>
                     </li>
                 </ol>
             </li>
@@ -913,7 +1047,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         </ol>
     </div>
     <!-- end Glide -->
-    <!-- start JodaTime & Prettytime-->
+    <!-- start JodaTime & Prettytime + swipe to refresh-->
     <div class="header-col content-header">
         <h2><span>JodaTime & Prettytime - Finalizando la integración.</span></h2>
     </div>
