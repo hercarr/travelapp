@@ -23,4 +23,5 @@
     <string name="starting_session">Iniciando sesión</string>
     <string name="title_activity_maps">Map</string>
     <string name="not_connected_message">No conectado, los datos que visualizas podrian estar desactualizados.</string>
+    <string name="close_session">Cerrar sesión</string>
 </resources>
