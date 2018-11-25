@@ -1,6 +1,8 @@
 package com.qacg.travelapp.models;
 
-public class Profile {
+import io.realm.RealmObject;
+
+public class Profile extends RealmObject {
 
     private String urlImageProfile;
     private String nameProfile;

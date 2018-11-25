@@ -2,8 +2,13 @@ package com.qacg.travelapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Place {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+public class Place extends RealmObject {
+
+    @PrimaryKey
+    private String placeId;
     @SerializedName("postedBy")
     private Profile profile;
     @SerializedName("createdAt")

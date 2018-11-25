@@ -12,4 +12,8 @@ public interface IPlacesView {
 
     void connectionUnavailable();
 
+    void showNoInternetConnectionMsg();
+
+    void hideSwipe();
+
 }
