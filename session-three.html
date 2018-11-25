@@ -1234,6 +1234,418 @@ implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'</code></pre>
             </li>
         </ol>
     </div>
+    <!-- start Realm -->
+    <div class="header-col content-header">
+        <h2><span>Realm</span></h2>
+    </div>
+    <div class="row education">
+        <div class="content-picture-container">
+            <img class="content-picture wow zoomIn" width="512px" src="images/session-three/realm.png" alt="new project" />
+        </div>
+
+        <p><span>¿Que es Realm?</span></p>
+        <p>Es una base de datos mobiles que corre directamente en teléfonos, tablets o wearables.</p>
+        <ol>
+            <li>
+                <p>Permite a nuestras aplicaciones ofrecer las siguientes caracteristicas.</p>
+                <ol>
+                    <li>Sincronización en la nube</li>
+                    <li>Colaboración en tiempo real</li>
+                    <li>Offline-first</li>
+                    <li>Base de datos local</li>
+                    <li>Live objects</li>
+                </ol>
+            </li>
+            <li>Open source</li>
+            <li>
+                <p>Plataformas</p>
+                <ol>
+                    <li><a href="https://realm.io/docs/java/latest/">Java</a></li>
+                    <li><a href="https://realm.io/docs/swift/latest/">Swift</a></li>
+                    <li><a href="https://realm.io/docs/objc/latest/">Objective C</a></li>
+                    <li><a href="https://realm.io/docs/javascript/latest/">Javascript (React Native)</a></li>
+                    <li><a href="https://realm.io/docs/dotnet/latest/">.NET (Xamarin)</a></li>
+                </ol>
+            </li>
+            <li>
+                <p>Instalación</p>
+                <ol>
+                    <li>
+                        <p>Dependencias</p>
+                        <ol>
+                            <li>
+                                <p>Agregar la siguiente dependencia en el archivo Gradle del <span>projecto</span></p>
+                                <pre><code>classpath "io.realm:realm-gradle-plugin:5.8.0"</code></pre>
+                            </li>
+                            <li>
+                                <p>Aplicar el plugin de Realm al principio del archivo Gradle de la <span>aplicación</span></p>
+                                <pre><code>apply plugin: 'realm-android'</code></pre>
+                            </li>
+                            <li>Sincronizamos para descargar las dependencias.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <p>Clase de la aplicación</p>
+                        <p>Es una práctica común que en aplicaciones Android se cuente una clase que es inicializada antes de cualquier otra
+                        clase en la aplicación, esta clase es denominada
+                            <a href="https://github.com/codepath/android_guides/wiki/Understanding-the-Android-Application-Class">la clase de la Aplicación</a>.</p>
+                        <p>Cuando trabajamos con Realm, es necesario tener esta clase presente, ya que es aqui donde se inicializa la configuración de
+                        la base de datos.</p>
+                        <p>Agregar la clase de la aplicación.</p>
+                        <ol>
+                            <li>Crear el archivo <span>TravelApp</span> en el paquete <span>com.qacg.travelapp.utils</span></li>
+                            <li>
+                                <p>Sobre escribir el contenido del metodo <span>onCreate</span> lo siguiente:</p>
+
+                                <pre><code class="language-java">
+                        <script type="prism-java">
+super.onCreate();
+context = getApplicationContext();
+//Realm initialization.
+Realm.init(getApplicationContext());
+//Delete Realm db if migration is needed.
+RealmConfiguration config = new RealmConfiguration
+.Builder()
+.deleteRealmIfMigrationNeeded()
+.build();
+Realm.setDefaultConfiguration(config);
+</script></code></pre>
+                            </li>
+                            <li>
+                                <p>Modificar el archivo <span>Manifest.xml</span></p>
+                                Agregamos el siguiente atributo al tag Application.
+                                <pre><code class="language-java">
+                        <script type="prism-java">
+android:name=".utils.TravelApp"
+</script></code></pre>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <p>Para mas informacion visitar <a href="https://realm.io/docs/java/latest/"></a>https://realm.io/docs/java/latest/</p>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <p>Offline first en Travelapp</p>
+                <p>Con el objetivo de mejorar la experiencia de usuario, agregaremos a nuestra aplicación una caracteristica
+                que permitirá guardar en "caché" los ultimos post obtenidos desde el servicio web y estos serán mostrados
+                cuando el dispositivo no cuente con una conexión a internet o no se realiza de manera exitosa una conexion con el servidor.</p>
+                <ol>
+                    <li>
+                        <p>Build gradle - proyecto</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        // Agregamos la dependencia de Realm
+        classpath "io.realm:realm-gradle-plugin:5.8.0"
+
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Build gradle - aplicacion</p>
+                        <p>Al principio de la aplicacion agregar</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+apply plugin: 'realm-android'
+
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.qacg.travelapp"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Actualizamos los compile options requerido para esta version de Realm
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>PlacesFragment.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+  @Override
+    public void placesFound(List<Place> places) {
+        adapter.addList(places);
+    }
+
+    @Override
+    public void placesNotFound() {
+        adapter.addList(null);
+    }
+
+    @Override
+    public void connectionUnavailable() {
+        Toast.makeText(getActivity(), getResources().getString(R.string.conection_unavailable),
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showNoInternetConnectionMsg() {
+        Toast.makeText(getActivity(), getResources().getString(R.string.not_connected_message),
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void hideSwipe() {
+        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Place.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+
+package com.qacg.travelapp.models;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Place extends RealmObject {
+
+    @PrimaryKey
+    private String placeId;
+    @SerializedName("postedBy")
+    private Profile profile;
+    @SerializedName("createdAt")
+    private String date;
+    private String urlImagePlace;
+    private boolean isFavorite;
+    private double latitude, longitude;
+    @SerializedName("likes")
+    private int totalLikes;
+    private String namePlace;
+    private String description;
+    private int totalComments;
+
+    // GETTESRS AND SETTERS
+}
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Profile.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.models;
+
+import io.realm.RealmObject;
+
+public class Profile extends RealmObject {
+
+    private String urlImageProfile;
+    private String nameProfile;
+    // GETTESRS AND SETTERS
+}
+</script></code></pre>
+
+                    </li>
+                    <li>
+                        <p>PlacesPresenter.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.presents;
+
+import com.qacg.travelapp.api.ResourceGenerator;
+import com.qacg.travelapp.models.Place;
+import com.qacg.travelapp.utils.TravelApp;
+import com.qacg.travelapp.views.IPlacesView;
+
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class PlacesPresenter {
+
+    private IPlacesView view;
+    private final Realm realm;
+
+
+    public PlacesPresenter(IPlacesView view) {
+        this.view = view;
+        realm = Realm.getDefaultInstance();
+    }
+
+    public void loadPlaces() {
+        if (TravelApp.isConnected()) {
+            Call<List<Place>> call = ResourceGenerator.getTravelResource().getAllPlaces();
+
+            call.enqueue(new Callback<List<Place>>() {
+                @Override
+                public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                    view.hideSwipe();
+                    if (response.isSuccessful()) {
+                        if (response.body() != null && response.body().size() > 0) {
+                            view.placesFound(response.body());
+                            saveToRealm(response.body());
+                        } else {
+                            view.placesNotFound();
+                        }
+                    } else {
+                        view.connectionUnavailable();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Place>> call, Throwable t) {
+                    view.hideSwipe();
+                    view.connectionUnavailable();
+                    view.placesFound(getLocalPlaces());
+                }
+            });
+        } else {
+            view.hideSwipe();
+            view.showNoInternetConnectionMsg();
+            view.placesFound(getLocalPlaces());
+        }
+    }
+
+    // Realm
+    private void saveToRealm(final List<Place> places) {
+        deleteLocalPlaces();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealm(places);
+            }
+        });
+    }
+
+    private List<Place> getLocalPlaces() {
+        return realm.where(Place.class).findAll();
+    }
+
+    /**
+     * Elimina el caché
+     */
+    private void deleteLocalPlaces() {
+        final RealmResults<Place> places = realm.where(Place.class).findAll();
+        if (places != null) {
+            realm.executeTransaction(
+                    new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            places.deleteAllFromRealm();
+                        }
+                    }
+            );
+        }
+    }
+}</script></code></pre>
+                    </li>
+                    <li>
+                        <p>IPlacesView.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+    void showNoInternetConnectionMsg();
+
+    void hideSwipe();
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>Strings</p>
+                        <p>strings.xml</p>
+                        <pre><code class="language-java"><script type="prism-java">
+<string name="comments_placeholder">%1s comentarios</string>
+<string name="likes_placeholder">%1s me gusta</string>
+</script></code></pre>
+                        <p>strings.xml (en)</p>
+                        <pre><code class="language-java"><script type="prism-java">
+<string name="comments_placeholder">%1s comments</string>
+<string name="likes_placeholder">%1s likes</string>
+</script></code></pre>
+                    </li>
+                    <li>
+                        <p>TravelApp.java</p>
+                        <pre><code class="language-java">
+                        <script type="prism-java">
+package com.qacg.travelapp.utils;
+
+import android.app.Application;
+import android.content.Context;
+import android.net.ConnectivityManager;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
+public class TravelApp extends Application {
+
+    private static Context context;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        context = getApplicationContext();
+        //Realm initialization.
+        Realm.init(getApplicationContext());
+        //Delete Realm db if migration is needed.
+        RealmConfiguration config = new RealmConfiguration
+                .Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
+    }
+
+    public static Context getContext() {
+        return context;
+    }
+
+
+    /**
+     * <p>Retorna verdadero si existe una conexion a internet.</p>
+     *
+     * @return Boolean - Estado de la conexion del dispositivo.
+     */
+    public static boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if( cm != null && cm.getActiveNetworkInfo() != null )
+            return cm.getActiveNetworkInfo().isConnected();
+        return false;
+    }
+}</script></code></pre>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+    <!-- end Realm -->
 </section>
 <!-- footer -->
 <footer>
