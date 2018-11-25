@@ -52,8 +52,6 @@
             <br>
             <br>
             Quality & Knowledge on IT Services
-            <br>
-            <span style="font-size: .7em;">( contenido disponible el domingo 25 de Noviembre del 2018)</span>
         </h3>
       </div>
     </div>
@@ -63,6 +61,60 @@
     <div class="header-overlay"></div>
   </header>
   <!-- header end -->
+  <!-- section start -->
+ 	<section id="agenda">
+    <!-- what's android start -->
+      <h1 class="section-title wow fadeInDown">Publicación en Tienda</h1>
+      <div class="header-col content-header">
+				<h2><span>Google Play Console</span></h2>
+      </div>
+      <div class="row education">
+      	<p>
+          Para liberar una aplicación en tienda se necesita ingresar a la <a href="https://play.google.com/apps/publish/" target="_blank">Google Play Console</a>. Para ello se requiere crear un usuario (es posible crear la cuenta con cualquier dominio de correo electrónico, es decir, no es estrictamente necesario utilizar una cuenta gmail), para ello, la plataforma nos solicitará realizar los siguientes puntos.
+          <ol>
+            <li>Registrarse a través de una cuenta de correo electrónico</li>
+            <li>Aceptar los términos & condiciones como desarrollador</li>
+            <li>Realizar el pago del registro</li>
+            <li>Proporcionar información de la cuenta (empresarial o personal)</li>
+          </ol>
+        </p>
+        <p>
+          Una vez finalizado todos los puntos anteriores, podrás enviar aplicaciones a tienda.
+        </p>
+      </div>
+      <div class="header-col content-header">
+				<h2><span>Crear una Aplicación en Google Play Console</span></h2>
+      </div>
+      <div class="row education">
+      	<p>
+          Para enviar nuestra aplicación a tienda, lo primero que haremos será crear nuestra aplicación en la Google Play Console siguiente los siguientes pasos:
+          <ol>
+            <li>Click en el botón <strong>Create Application</strong></li>
+            <li>Indicamos el <strong>lenguaje</strong> default de nuestra aplicación & <strong>titulo</strong> de la misma (a mostrar en Play Store)</li>
+            <li>Click en el botón <strong>Create</strong></li>
+            <li>Google Play Console nos mostrará el detalle de nuestra aplicación, en donde debemos proporcionar información requerida para publicar en tienda (información que verán nuestros usuarios), tales como: descripciones, recursos gráficos, definir la categoría de nuestra aplicación, entre otros.</li>
+            <li>En Android Studio generemos el archivo de instalación apk (Android Application Package) o aab (Android App Bundles) de nuestra aplicación para enviarlo a la Google Play Console</li>
+            <li>Vamos a crear un liberación en la Google Play Console al cargar nuestro archivo de instalación seleccionando las opciones: App releases > Production > Manage > Create Release > Browse Files - se recomienda nombrar el archivo como appname-vnumber.aab o appname-vnumber.apk</li>
+            <li>Incorporamos el <i>Content Rating</i> de la aplicación para definir la categoría de la misma</li>
+            <li>Configuremos la información de distribución para la aplicación</li>
+            <li>Una vez realizadas todas la configuraciones anteriores, seleccionar el botón <i>Ready to publish</i>, posteriormente <i>Manage Releases</i></li>
+            <li>Finalmente en la sección App Releases > Production seleccionar la opción <i>Start Rollout to Production</i> para enviar la publicación a tienda</li>
+          </ol>
+          Ahora solo es cuestión de tiempo (esperar) para que la aplicación se vea en Play Store.
+        </p>
+        <p>
+          Notas:
+          <ol>
+            <li>Estos pasos pueden ser diferentes al momento de redactar estas lineas, debido a que Google Play Console actualiza su plataforma constantemente.</li>
+            <li><a href="https://hercarr.github.io/travelapp/images/session-four/playstore.zip" target="_blank">Click aquí</a> para descargar recursos gráficos requeridos de ejemplo para subir una aplicación en tienda (los recursos correspondes a esta aplicación).</li>
+            <li>Cada vez que enviemos una versión a tienda (se libere o no) se requiere incrementar la propiedad <i>versionCode</i> del archivo <i>build.gradle</i></li>
+          </ol>
+        </p>
+      </div>
+      <div style="text-align: center; margin-top: -30px; margin-bottom: -50px;">Para más información visita: <a href="https://support.google.com/googleplay/android-developer/answer/113469" target="_blank">https://support.google.com/googleplay/android-developer/answer/113469</a></div>
+      <!-- what's android end -->
+  </section>
+  <!-- section end -->
   <!-- footer -->
   <footer>
     <div class="row wow fadeInUp" style="color: white;">
