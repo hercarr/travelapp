@@ -1,6 +1,7 @@
 package com.qacg.travelapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.qacg.travelapp.R;
+import com.qacg.travelapp.activities.MapsActivity;
 import com.qacg.travelapp.models.Place;
 
 import org.joda.time.DateTime;
@@ -50,7 +52,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
     private String parseToElapsedTime(String stringDatetime) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-        return new PrettyTime().format( DateTime.parse(stringDatetime, formatter).toDate() );
+        return new PrettyTime().format(DateTime.parse(stringDatetime, formatter).toDate());
     }
 
     @Override
@@ -68,6 +70,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         private ImageView imagePlace;
         private TextView description;
         private TextView numberComments;
+        private View imageOptionNear;
 
 
         public PlaceViewHolder(@NonNull View itemView) {
@@ -80,9 +83,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             namePlace = itemView.findViewById(R.id.textTitlePlace);
             description = itemView.findViewById(R.id.textDescription);
             numberComments = itemView.findViewById(R.id.textNumberComments);
+            imageOptionNear = itemView.findViewById(R.id.imageOptionNear);
         }
 
-        void dataBinding(Place place) {
+        void dataBinding(final Place place) {
             Glide.with(mContext)
                     .load(place.getProfile().getUrlImageProfile())
                     .apply(RequestOptions.circleCropTransform())
@@ -99,6 +103,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             namePlace.setText(place.getNamePlace());
             description.setText(place.getDescription());
             numberComments.setText(mContext.getResources().getString(R.string.comments_placeholder, String.valueOf(place.getTotalComments())));
+            imageOptionNear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(MapsActivity.getActivityIntent(mContext, place.getLatitude(), place.getLongitude(), place.getNamePlace()));
+                }
+            });
         }
     }
 }
